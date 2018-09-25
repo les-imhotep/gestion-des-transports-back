@@ -29,11 +29,12 @@ public class Version {
         return id;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
-    }
 
-    public ZonedDateTime getDateTimeCreated() {
+    public void setId(Integer id) {
+		this.id = id;
+	}
+
+	public ZonedDateTime getDateTimeCreated() {
         return dateTimeCreated;
     }
 
