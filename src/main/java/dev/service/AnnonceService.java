@@ -27,6 +27,11 @@ public class AnnonceService {
 		return this.annonceRepo.findAll();
 	}
 	
+	public void supprimerAnnonce(Long id) {
+		
+		this.annonceRepo.deleteById(id);		
+	}
+	
 	
 
 }

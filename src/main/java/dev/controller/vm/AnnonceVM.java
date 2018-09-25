@@ -10,6 +10,7 @@ public class AnnonceVM {
 	private String lieuDeDepart;
 	private String lieuDeDestination;
 	private Integer nombreDeVoyageurs;
+	private Long id;
 	
 	
 	public AnnonceVM() {
@@ -17,10 +18,20 @@ public class AnnonceVM {
 	}
 
 	public AnnonceVM(Annonce annonce) {
+		this.id = annonce.getId();
 		this.horaireDeDepart = annonce.getHoraireDeDepart();
 		this.lieuDeDepart = annonce.getLieuDeDepart();
 		this.lieuDeDestination = annonce.getLieuDeDestination();
 		this.nombreDeVoyageurs = annonce.getNombreDeVoyageurs();
+	}
+
+	
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
 	}
 
 	public LocalDateTime getHoraireDeDepart() {

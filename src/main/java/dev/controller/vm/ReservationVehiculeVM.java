@@ -7,20 +7,29 @@ import dev.domain.VehiculeDeSociete;
 public class ReservationVehiculeVM {
 
 	private Collegue collegue;
-
 	private VehiculeDeSociete vehiculeSoc;
-
 	private Boolean chauffeur;
+	private Long id;
 
 	public ReservationVehiculeVM() {
-		super();
 	}
 
 	public ReservationVehiculeVM(ReservationVehicule resVehicule) {
-		super();
+		
+		this.id = resVehicule.getId();
 		this.collegue = resVehicule.getCollegue();
 		this.vehiculeSoc = resVehicule.getVehiculeSoc();
 		this.chauffeur = resVehicule.getChauffeur();
+	}
+	
+	
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
 	}
 
 	public Collegue getCollegue() {
