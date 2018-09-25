@@ -28,11 +28,12 @@ public class RoleCollegue {
         return id;
     }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
 
-    public Role getRole() {
+    public void setId(Long id) {
+		this.id = id;
+	}
+
+	public Role getRole() {
         return role;
     }
 

@@ -12,6 +12,7 @@ import org.springframework.stereotype.Component;
 import dev.domain.Annonce;
 import dev.domain.Categorie;
 import dev.domain.Collegue;
+import dev.domain.ReservationCovoiturage;
 import dev.domain.ReservationVehicule;
 import dev.domain.Role;
 import dev.domain.RoleCollegue;
@@ -20,6 +21,7 @@ import dev.domain.VehiculeDeSociete;
 import dev.domain.Version;
 import dev.repository.AnnonceRepo;
 import dev.repository.CollegueRepo;
+import dev.repository.ReservationCovoiturageRepo;
 import dev.repository.ReservationVehiculeRepo;
 import dev.repository.VehiculeRepo;
 import dev.repository.VersionRepo;
@@ -37,8 +39,9 @@ public class StartupListener {
 	private CollegueRepo collegueRepo;
 	private ReservationVehiculeRepo reservationVehiculeRepo;
 	private AnnonceRepo annonceRepo;
+	private ReservationCovoiturageRepo reservationCovoiturageRepo;
 
-	public StartupListener(@Value("${app.version}") String appVersion, AnnonceRepo annonceRepo, ReservationVehiculeRepo reservationVehiculeRepo,
+	public StartupListener(@Value("${app.version}") String appVersion, AnnonceRepo annonceRepo, ReservationCovoiturageRepo reservationCovoiturageRepo, ReservationVehiculeRepo reservationVehiculeRepo,
 			VehiculeRepo vehiculeRepo, VersionRepo versionRepo, PasswordEncoder passwordEncoder,
 			CollegueRepo collegueRepo) {
 		this.appVersion = appVersion;
@@ -48,6 +51,7 @@ public class StartupListener {
 		this.vehiculeRepo = vehiculeRepo;
 		this.reservationVehiculeRepo = reservationVehiculeRepo;
 		this.annonceRepo = annonceRepo;
+		this.reservationCovoiturageRepo = reservationCovoiturageRepo;
 	}
 
 	@EventListener(ContextRefreshedEvent.class)
@@ -104,6 +108,12 @@ public class StartupListener {
         annonce.setNombreDeVoyageurs(6);
         annonce.setVehicule(vehiculeDeSociete);
         this.annonceRepo.save(annonce);
+        
+        ReservationCovoiturage reservationCovoiturage = new ReservationCovoiturage();
+        reservationCovoiturage.setAnnonce(annonce);
+        reservationCovoiturage.setCollegue(col2);
+        this.reservationCovoiturageRepo.save(reservationCovoiturage);
+        
 	}
         
 
