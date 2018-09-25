@@ -17,12 +17,12 @@ public class Vehicule {
 	private String marque;
 	private String modele;
 	private String immatriculation;
-	private String nombreDePlace;
+	private Integer nombreDePlace;
 	
 	public Vehicule() {
 	}
 
-	public Vehicule(String marque, String modele, String immatriculation, String nombreDePlace) {
+	public Vehicule(String marque, String modele, String immatriculation, Integer nombreDePlace) {
 		this.marque = marque;
 		this.modele = modele;
 		this.immatriculation = immatriculation;
@@ -61,11 +61,11 @@ public class Vehicule {
 		this.immatriculation = immatriculation;
 	}
 
-	public String getNombreDePlace() {
+	public Integer getNombreDePlace() {
 		return nombreDePlace;
 	}
 
-	public void setNombreDePlace(String nombreDePlace) {
+	public void setNombreDePlace(Integer nombreDePlace) {
 		this.nombreDePlace = nombreDePlace;
 	}
 	
