@@ -1,13 +1,17 @@
 package dev.domain;
 
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 
 @Entity
 public class VehiculeDeSociete extends Vehicule {
 	
 	private String photo;
+	@Enumerated(EnumType.STRING)
 	private Categorie categorie;
 	private Boolean disponibilite;
+	@Enumerated(EnumType.STRING)
 	private Statut statut;
 	
 	public VehiculeDeSociete(String photo, Categorie categorie, Boolean disponibilite, Statut statut) {

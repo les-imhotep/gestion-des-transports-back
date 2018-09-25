@@ -1,5 +1,6 @@
 package dev;
 
+import dev.domain.Annonce;
 import dev.domain.Categorie;
 import dev.domain.Collegue;
 import dev.domain.Role;
@@ -7,6 +8,7 @@ import dev.domain.RoleCollegue;
 import dev.domain.Statut;
 import dev.domain.VehiculeDeSociete;
 import dev.domain.Version;
+import dev.repository.AnnonceRepo;
 import dev.repository.CollegueRepo;
 import dev.repository.VehiculeRepo;
 import dev.repository.VersionRepo;
@@ -16,6 +18,7 @@ import org.springframework.context.event.EventListener;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
+import java.time.LocalDateTime;
 import java.util.Arrays;
 
 /**
@@ -30,13 +33,15 @@ public class StartupListener {
     private VehiculeRepo vehiculeRepo;
     private PasswordEncoder passwordEncoder;
     private CollegueRepo collegueRepo;
+    private AnnonceRepo annonceRepo;
 
-    public StartupListener(@Value("${app.version}") String appVersion, VehiculeRepo vehiculeRepo, VersionRepo versionRepo, PasswordEncoder passwordEncoder, CollegueRepo collegueRepo) {
+    public StartupListener(@Value("${app.version}") String appVersion, AnnonceRepo annonceRepo, VehiculeRepo vehiculeRepo, VersionRepo versionRepo, PasswordEncoder passwordEncoder, CollegueRepo collegueRepo) {
         this.appVersion = appVersion;
         this.versionRepo = versionRepo;
         this.passwordEncoder = passwordEncoder;
         this.collegueRepo = collegueRepo;
         this.vehiculeRepo = vehiculeRepo;
+        this.annonceRepo = annonceRepo;
     }
 
     @EventListener(ContextRefreshedEvent.class)
@@ -71,6 +76,15 @@ public class StartupListener {
         vehiculeDeSociete.setPhoto("fghjklmù");
         vehiculeDeSociete.setStatut(Statut.HORS_SERVICE);
         this.vehiculeRepo.save(vehiculeDeSociete);
+        
+        Annonce annonce = new Annonce();
+        annonce.setCollegue(col1);
+        annonce.setHoraireDeDepart(LocalDateTime.now());
+        annonce.setLieuDeDepart("Nantes");
+        annonce.setLieuDeDestination("Brest");
+        annonce.setNombreDeVoyageurs(6);
+        annonce.setVehicule(vehiculeDeSociete);
+        this.annonceRepo.save(annonce);
         
     }
 

@@ -6,6 +6,10 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 
 @Entity
 public class Annonce {
@@ -14,7 +18,11 @@ public class Annonce {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 	
+	@ManyToOne
+	@JoinColumn(name="collegue_ID")
 	private Collegue collegue;
+	@ManyToOne
+	@JoinColumn(name="vehicule_ID")
 	private Vehicule vehicule;
 	private LocalDateTime horaireDeDepart;
 	private String lieuDeDepart;
