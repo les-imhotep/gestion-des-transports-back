@@ -7,7 +7,7 @@ public class VehiculeVM {
 	private String marque;
 	private String modele;
 	private String immatriculation;
-	private String nombreDePlace;
+	private Integer nombreDePlace;
 	
 	
 	public VehiculeVM() {
@@ -44,11 +44,11 @@ public class VehiculeVM {
 		this.immatriculation = immatriculation;
 	}
 
-	public String getNombreDePlace() {
+	public Integer getNombreDePlace() {
 		return nombreDePlace;
 	}
 
-	public void setNombreDePlace(String nombreDePlace) {
+	public void setNombreDePlace(Integer nombreDePlace) {
 		this.nombreDePlace = nombreDePlace;
 	}
 	
