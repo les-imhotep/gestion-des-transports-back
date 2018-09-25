@@ -1,5 +1,6 @@
 package dev;
 
+import java.time.LocalDateTime;
 import java.util.Arrays;
 
 import org.springframework.beans.factory.annotation.Value;
@@ -8,6 +9,7 @@ import org.springframework.context.event.EventListener;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
+import dev.domain.Annonce;
 import dev.domain.Categorie;
 import dev.domain.Collegue;
 import dev.domain.ReservationVehicule;
@@ -16,6 +18,7 @@ import dev.domain.RoleCollegue;
 import dev.domain.Statut;
 import dev.domain.VehiculeDeSociete;
 import dev.domain.Version;
+import dev.repository.AnnonceRepo;
 import dev.repository.CollegueRepo;
 import dev.repository.ReservationVehiculeRepo;
 import dev.repository.VehiculeRepo;
@@ -33,8 +36,9 @@ public class StartupListener {
 	private PasswordEncoder passwordEncoder;
 	private CollegueRepo collegueRepo;
 	private ReservationVehiculeRepo reservationVehiculeRepo;
+	private AnnonceRepo annonceRepo;
 
-	public StartupListener(@Value("${app.version}") String appVersion, ReservationVehiculeRepo reservationVehiculeRepo,
+	public StartupListener(@Value("${app.version}") String appVersion, AnnonceRepo annonceRepo, ReservationVehiculeRepo reservationVehiculeRepo,
 			VehiculeRepo vehiculeRepo, VersionRepo versionRepo, PasswordEncoder passwordEncoder,
 			CollegueRepo collegueRepo) {
 		this.appVersion = appVersion;
@@ -43,6 +47,7 @@ public class StartupListener {
 		this.collegueRepo = collegueRepo;
 		this.vehiculeRepo = vehiculeRepo;
 		this.reservationVehiculeRepo = reservationVehiculeRepo;
+		this.annonceRepo = annonceRepo;
 	}
 
 	@EventListener(ContextRefreshedEvent.class)
@@ -90,7 +95,16 @@ public class StartupListener {
 		resVehicule2.setVehiculeSoc(vehiculeDeSociete);
 		resVehicule2.setChauffeur(false);
 		this.reservationVehiculeRepo.save(resVehicule2);
-
+        
+        Annonce annonce = new Annonce();
+        annonce.setCollegue(col1);
+        annonce.setHoraireDeDepart(LocalDateTime.now());
+        annonce.setLieuDeDepart("Nantes");
+        annonce.setLieuDeDestination("Brest");
+        annonce.setNombreDeVoyageurs(6);
+        annonce.setVehicule(vehiculeDeSociete);
+        this.annonceRepo.save(annonce);
 	}
+        
 
 }
