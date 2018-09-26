@@ -8,11 +8,11 @@ import dev.domain.ReservationVehicule;
 import dev.repository.ReservationVehiculeRepo;
 
 @Service
-public class ReservationService {
+public class ReservationVehiculeService {
 
 	private ReservationVehiculeRepo reservationVehiculeRepo;
 
-	public ReservationService(ReservationVehiculeRepo reservationVehiculeRepo) {
+	public ReservationVehiculeService(ReservationVehiculeRepo reservationVehiculeRepo) {
 		super();
 		this.reservationVehiculeRepo = reservationVehiculeRepo;
 	}
