@@ -1,8 +1,6 @@
 package dev.service;
 
 import java.util.List;
-import java.util.Optional;
-
 import javax.transaction.Transactional;
 
 import org.springframework.stereotype.Service;
@@ -23,17 +21,13 @@ public class AnnonceService {
 	
 	
 	
-	public List<Annonce> findAllAnnonces(String username) {
+	public List<Annonce> listerAnnonces(String username) {
 
 		return this.annonceRepo.findAllByCollegueEmail(username);
 	}
 
 	
 	public void supprimerAnnonce(Long id) {
-		
-		
-		
-		
 		
 		this.annonceRepo.deleteById(id);		
 	}

@@ -9,20 +9,20 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import dev.controller.vm.ReservationVehiculeVM;
-import dev.service.ReservationService;
+import dev.service.ReservationVehiculeService;
 
 @CrossOrigin
 @RestController()
 @RequestMapping("/collaborateur")
 public class ReservationVehiculeController extends AbstractController {
 
-	private ReservationService reservationService;
+	private ReservationVehiculeService reservationService;
 
-	public ReservationVehiculeController(ReservationService reservationService) {
+	public ReservationVehiculeController(ReservationVehiculeService reservationService) {
 		this.reservationService = reservationService;
 	}
 
-	@GetMapping("/reservations")
+	@GetMapping("/reservationsVehicule")
 	public ResponseEntity<List<ReservationVehiculeVM>> findReservationById() {
 		String username = getUserDetails();
 		return ResponseEntity.ok(this.reservationService.listerReservationCollegue(username).stream()
