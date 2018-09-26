@@ -107,12 +107,21 @@ public class StartupListener {
 
 		Annonce annonce = new Annonce();
 		annonce.setCollegue(col1);
-		annonce.setHoraireDeDepart(LocalDateTime.now());
+		annonce.setHoraireDeDepart(LocalDateTime.of(2018, 9, 28, 15, 30));
 		annonce.setLieuDeDepart("Nantes");
 		annonce.setLieuDeDestination("Brest");
 		annonce.setNombreDeVoyageurs(6);
 		annonce.setVehicule(vehiculeDeSociete);
 		this.annonceRepo.save(annonce);
+		
+		Annonce annonce2 = new Annonce();
+		annonce2.setCollegue(col1);
+		annonce2.setHoraireDeDepart(LocalDateTime.of(2018, 6, 24, 18, 45));
+		annonce2.setLieuDeDepart("Brest");
+		annonce2.setLieuDeDestination("Rennes");
+		annonce2.setNombreDeVoyageurs(6);
+		annonce2.setVehicule(vehiculeDeSociete);
+		this.annonceRepo.save(annonce2);
 
 		ReservationCovoiturage reservationCovoiturage = new ReservationCovoiturage();
 		reservationCovoiturage.setAnnonce(annonce);
