@@ -14,7 +14,6 @@ public class VehiculeVM {
 	}
 
 	public VehiculeVM(Vehicule vehicule) {
-
 		this.id = vehicule.getId();
 		this.marque = vehicule.getMarque();
 		this.modele = vehicule.getModele();

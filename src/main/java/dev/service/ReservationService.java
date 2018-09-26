@@ -1,7 +1,6 @@
 package dev.service;
 
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 
@@ -22,7 +21,7 @@ public class ReservationService {
 		return this.reservationVehiculeRepo.findAll();
 	}
 
-	public Optional<ReservationVehicule> listerReservationCollegue(Long id) {
-		return this.reservationVehiculeRepo.findById(id);
+	public List<ReservationVehicule> listerReservationCollegue(String username) {
+		return this.reservationVehiculeRepo.findByCollegueEmail(username);
 	}
 }
