@@ -1,6 +1,7 @@
 package dev.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import javax.transaction.Transactional;
 
@@ -22,12 +23,17 @@ public class AnnonceService {
 	
 	
 	
-	public List<Annonce> findAllAnnonces() {
+	public List<Annonce> findAllAnnonces(String username) {
 
-		return this.annonceRepo.findAll();
+		return this.annonceRepo.findAllByCollegueEmail(username);
 	}
+
 	
 	public void supprimerAnnonce(Long id) {
+		
+		
+		
+		
 		
 		this.annonceRepo.deleteById(id);		
 	}

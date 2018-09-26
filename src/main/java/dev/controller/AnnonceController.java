@@ -5,6 +5,7 @@ import java.util.stream.Collectors;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -20,7 +21,7 @@ import dev.service.AnnonceService;
 @CrossOrigin
 @RestController() // @Controller + @ResponseBody
 @RequestMapping("/collaborateur")
-public class AnnonceController {
+public class AnnonceController extends AbstractController {
 	
 	private AnnonceService annonceService;
 
@@ -31,8 +32,10 @@ public class AnnonceController {
 	
 	@GetMapping("/annonces")
 	public ResponseEntity<List<AnnonceVM>> listerAnnonces() {
+		
+		String username = getUserDetails();
 
-		return ResponseEntity.ok(this.annonceService.findAllAnnonces()
+		return ResponseEntity.ok(this.annonceService.findAllAnnonces(username)
 				.stream()
 				.map(annonce -> new AnnonceVM(annonce)).collect(Collectors.toList()));
 
