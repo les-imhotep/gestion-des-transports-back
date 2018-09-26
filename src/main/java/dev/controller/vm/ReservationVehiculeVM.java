@@ -11,7 +11,6 @@ public class ReservationVehiculeVM {
 	private CollegueVM collegueVM;
 
 	private VehiculeDeSocieteVM vehiculeSocVM;
-
 	private Boolean chauffeur;
 
 	private LocalDateTime depart;
@@ -19,7 +18,6 @@ public class ReservationVehiculeVM {
 	private LocalDateTime arrive;
 
 	public ReservationVehiculeVM() {
-		super();
 	}
 
 	public ReservationVehiculeVM(ReservationVehicule resVehicule) {
@@ -30,6 +28,14 @@ public class ReservationVehiculeVM {
 		this.chauffeur = resVehicule.getChauffeur();
 		this.depart = resVehicule.getDepart();
 		this.arrive = resVehicule.getArrive();
+	}
+
+	public long getId() {
+		return id;
+	}
+
+	public void setId(long id) {
+		this.id = id;
 	}
 
 	public CollegueVM getCollegue() {
@@ -54,14 +60,6 @@ public class ReservationVehiculeVM {
 
 	public void setChauffeur(Boolean chauffeur) {
 		this.chauffeur = chauffeur;
-	}
-
-	public long getId() {
-		return id;
-	}
-
-	public void setId(long id) {
-		this.id = id;
 	}
 
 	public LocalDateTime getDepart() {

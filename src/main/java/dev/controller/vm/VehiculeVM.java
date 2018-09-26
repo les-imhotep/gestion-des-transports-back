@@ -8,15 +8,26 @@ public class VehiculeVM {
 	private String modele;
 	private String immatriculation;
 	private Integer nombreDePlace;
+	private Long id;
 
 	public VehiculeVM() {
 	}
 
 	public VehiculeVM(Vehicule vehicule) {
+
+		this.id = vehicule.getId();
 		this.marque = vehicule.getMarque();
 		this.modele = vehicule.getModele();
 		this.immatriculation = vehicule.getImmatriculation();
 		this.nombreDePlace = vehicule.getNombreDePlace();
+	}
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
 	}
 
 	public String getMarque() {

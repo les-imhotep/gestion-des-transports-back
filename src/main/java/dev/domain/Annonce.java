@@ -1,15 +1,9 @@
 package dev.domain;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
+import javax.persistence.*;
 
 @Entity
 public class Annonce {
@@ -19,15 +13,17 @@ public class Annonce {
     private Long id;
 	
 	@ManyToOne
-	@JoinColumn(name="collegue_ID")
+	@JoinColumn(name="collegue_id")
 	private Collegue collegue;
 	@ManyToOne
-	@JoinColumn(name="vehicule_ID")
+	@JoinColumn(name="vehicule_id")
 	private Vehicule vehicule;
 	private LocalDateTime horaireDeDepart;
 	private String lieuDeDepart;
 	private String lieuDeDestination;
 	private Integer nombreDeVoyageurs;
+	@OneToMany(mappedBy= "annonce", cascade = CascadeType.ALL)
+	private List<ReservationCovoiturage> listeCovoit;
 	
 	public Annonce() {
 	}
