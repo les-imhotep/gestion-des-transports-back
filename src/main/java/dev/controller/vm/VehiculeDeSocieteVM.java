@@ -4,18 +4,19 @@ import dev.domain.Categorie;
 import dev.domain.Statut;
 import dev.domain.VehiculeDeSociete;
 
-public class VehiculeDeSocieteVM extends VehiculeVM{
-	
+public class VehiculeDeSocieteVM extends VehiculeVM {
+
 	private String photo;
 	private Categorie categorie;
 	private Boolean disponibilite;
 	private Statut statut;
-	
+
 	public VehiculeDeSocieteVM() {
-		
+
 	}
 
 	public VehiculeDeSocieteVM(VehiculeDeSociete vehiculeDeSociete) {
+		super(vehiculeDeSociete);
 		this.photo = vehiculeDeSociete.getPhoto();
 		this.categorie = vehiculeDeSociete.getCategorie();
 		this.disponibilite = vehiculeDeSociete.getDisponibilite();
@@ -53,9 +54,4 @@ public class VehiculeDeSocieteVM extends VehiculeVM{
 	public void setStatut(Statut statut) {
 		this.statut = statut;
 	}
-	
-	
-	
-	
-
 }

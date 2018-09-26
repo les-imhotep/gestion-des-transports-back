@@ -3,13 +3,12 @@ package dev.controller.vm;
 import dev.domain.Vehicule;
 
 public class VehiculeVM {
-	
+
 	private String marque;
 	private String modele;
 	private String immatriculation;
 	private Integer nombreDePlace;
-	
-	
+
 	public VehiculeVM() {
 	}
 
@@ -51,9 +50,4 @@ public class VehiculeVM {
 	public void setNombreDePlace(Integer nombreDePlace) {
 		this.nombreDePlace = nombreDePlace;
 	}
-	
-	
-	
-	
-
 }

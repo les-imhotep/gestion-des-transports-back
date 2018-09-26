@@ -1,16 +1,22 @@
 package dev.controller.vm;
 
-import dev.domain.Collegue;
+import java.time.LocalDateTime;
+
 import dev.domain.ReservationVehicule;
-import dev.domain.VehiculeDeSociete;
 
 public class ReservationVehiculeVM {
 
-	private Collegue collegue;
+	private long id;
 
-	private VehiculeDeSociete vehiculeSoc;
+	private CollegueVM collegueVM;
+
+	private VehiculeDeSocieteVM vehiculeSocVM;
 
 	private Boolean chauffeur;
+
+	private LocalDateTime depart;
+
+	private LocalDateTime arrive;
 
 	public ReservationVehiculeVM() {
 		super();
@@ -18,25 +24,28 @@ public class ReservationVehiculeVM {
 
 	public ReservationVehiculeVM(ReservationVehicule resVehicule) {
 		super();
-		this.collegue = resVehicule.getCollegue();
-		this.vehiculeSoc = resVehicule.getVehiculeSoc();
+		this.id = resVehicule.getId();
+		this.collegueVM = new CollegueVM(resVehicule.getCollegue());
+		this.vehiculeSocVM = new VehiculeDeSocieteVM(resVehicule.getVehiculeSoc());
 		this.chauffeur = resVehicule.getChauffeur();
+		this.depart = resVehicule.getDepart();
+		this.arrive = resVehicule.getArrive();
 	}
 
-	public Collegue getCollegue() {
-		return collegue;
+	public CollegueVM getCollegue() {
+		return collegueVM;
 	}
 
-	public void setCollegue(Collegue collegue) {
-		this.collegue = collegue;
+	public void setCollegue(CollegueVM collegue) {
+		this.collegueVM = collegue;
 	}
 
-	public VehiculeDeSociete getVehiculeSoc() {
-		return vehiculeSoc;
+	public VehiculeDeSocieteVM getVehiculeSoc() {
+		return vehiculeSocVM;
 	}
 
-	public void setVehiculeSoc(VehiculeDeSociete vehiculeSoc) {
-		this.vehiculeSoc = vehiculeSoc;
+	public void setVehiculeSoc(VehiculeDeSocieteVM vehiculeSoc) {
+		this.vehiculeSocVM = vehiculeSoc;
 	}
 
 	public Boolean getChauffeur() {
@@ -45,6 +54,30 @@ public class ReservationVehiculeVM {
 
 	public void setChauffeur(Boolean chauffeur) {
 		this.chauffeur = chauffeur;
+	}
+
+	public long getId() {
+		return id;
+	}
+
+	public void setId(long id) {
+		this.id = id;
+	}
+
+	public LocalDateTime getDepart() {
+		return depart;
+	}
+
+	public void setDepart(LocalDateTime depart) {
+		this.depart = depart;
+	}
+
+	public LocalDateTime getArrive() {
+		return arrive;
+	}
+
+	public void setArrive(LocalDateTime arrive) {
+		this.arrive = arrive;
 	}
 
 }
