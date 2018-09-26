@@ -1,5 +1,6 @@
 package dev.controller;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -28,12 +29,24 @@ public class ReservationCovoiturageController extends AbstractController {
 	}
 	
 	
-	@GetMapping("/reservationsCovoiturage")
-	public ResponseEntity<List<ReservationCovoiturageVM>> listerCovoiturage() {
+	@GetMapping("/reservationsCovoiturage/encours")
+	public ResponseEntity<List<ReservationCovoiturageVM>> listerCovoiturageEncours() {
 
 
 		return ResponseEntity.ok(this.reservationCovoiturageService.listerCovoiturages(getUserDetails())
 				.stream()
+				.filter(reservationCovoiturage -> reservationCovoiturage.getAnnonce().getHoraireDeDepart().isAfter(LocalDateTime.now()))
+				.map(reservationCovoiturage -> new ReservationCovoiturageVM(reservationCovoiturage)).collect(Collectors.toList()));
+
+	}
+	
+	@GetMapping("/reservationsCovoiturage/historique")
+	public ResponseEntity<List<ReservationCovoiturageVM>> listerCovoiturageHistorique() {
+
+
+		return ResponseEntity.ok(this.reservationCovoiturageService.listerCovoiturages(getUserDetails())
+				.stream()
+				.filter(reservationCovoiturage -> reservationCovoiturage.getAnnonce().getHoraireDeDepart().isBefore(LocalDateTime.now()))
 				.map(reservationCovoiturage -> new ReservationCovoiturageVM(reservationCovoiturage)).collect(Collectors.toList()));
 
 	}
