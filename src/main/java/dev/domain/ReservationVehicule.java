@@ -1,5 +1,7 @@
 package dev.domain;
 
+import java.time.LocalDateTime;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -23,15 +25,21 @@ public class ReservationVehicule {
 
 	private Boolean chauffeur;
 
+	private LocalDateTime depart;
+	private LocalDateTime arrive;
+
 	public ReservationVehicule() {
 		super();
 	}
 
-	public ReservationVehicule(Collegue collegue, VehiculeDeSociete vehiculeSoc, Boolean chauffeur) {
+	public ReservationVehicule(Collegue collegue, VehiculeDeSociete vehiculeSoc, Boolean chauffeur,
+			LocalDateTime depart, LocalDateTime arrive) {
 		super();
 		this.collegue = collegue;
 		this.vehiculeSoc = vehiculeSoc;
 		this.chauffeur = chauffeur;
+		this.depart = depart;
+		this.arrive = arrive;
 	}
 
 	public Long getId() {
@@ -64,6 +72,22 @@ public class ReservationVehicule {
 
 	public void setChauffeur(Boolean chauffeur) {
 		this.chauffeur = chauffeur;
+	}
+
+	public LocalDateTime getDepart() {
+		return depart;
+	}
+
+	public void setDepart(LocalDateTime depart) {
+		this.depart = depart;
+	}
+
+	public LocalDateTime getArrive() {
+		return arrive;
+	}
+
+	public void setArrive(LocalDateTime arrive) {
+		this.arrive = arrive;
 	}
 
 }

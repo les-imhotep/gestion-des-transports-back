@@ -9,16 +9,16 @@ import javax.persistence.InheritanceType;
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
 public class Vehicule {
-	
+
 	@Id
-    @GeneratedValue
-    private Long id;
-	
+	@GeneratedValue
+	private Long id;
+
 	private String marque;
 	private String modele;
 	private String immatriculation;
 	private Integer nombreDePlace;
-	
+
 	public Vehicule() {
 	}
 
@@ -32,7 +32,6 @@ public class Vehicule {
 	public Long getId() {
 		return id;
 	}
-
 
 	public void setId(Long id) {
 		this.id = id;
@@ -69,10 +68,4 @@ public class Vehicule {
 	public void setNombreDePlace(Integer nombreDePlace) {
 		this.nombreDePlace = nombreDePlace;
 	}
-	
-	
-	
-	
-	
-
 }

@@ -6,14 +6,14 @@ import javax.persistence.Enumerated;
 
 @Entity
 public class VehiculeDeSociete extends Vehicule {
-	
+
 	private String photo;
 	@Enumerated(EnumType.STRING)
 	private Categorie categorie;
 	private Boolean disponibilite;
 	@Enumerated(EnumType.STRING)
 	private Statut statut;
-	
+
 	public VehiculeDeSociete(String photo, Categorie categorie, Boolean disponibilite, Statut statut) {
 		this.photo = photo;
 		this.categorie = categorie;
@@ -55,10 +55,5 @@ public class VehiculeDeSociete extends Vehicule {
 	public void setStatut(Statut statut) {
 		this.statut = statut;
 	}
-	
-	
-	
-	
 
-	
 }

@@ -41,7 +41,8 @@ public class StartupListener {
 	private AnnonceRepo annonceRepo;
 	private ReservationCovoiturageRepo reservationCovoiturageRepo;
 
-	public StartupListener(@Value("${app.version}") String appVersion, AnnonceRepo annonceRepo, ReservationCovoiturageRepo reservationCovoiturageRepo, ReservationVehiculeRepo reservationVehiculeRepo,
+	public StartupListener(@Value("${app.version}") String appVersion, AnnonceRepo annonceRepo,
+			ReservationCovoiturageRepo reservationCovoiturageRepo, ReservationVehiculeRepo reservationVehiculeRepo,
 			VehiculeRepo vehiculeRepo, VersionRepo versionRepo, PasswordEncoder passwordEncoder,
 			CollegueRepo collegueRepo) {
 		this.appVersion = appVersion;
@@ -92,29 +93,32 @@ public class StartupListener {
 		resVehicule.setCollegue(col2);
 		resVehicule.setVehiculeSoc(vehiculeDeSociete);
 		resVehicule.setChauffeur(true);
+		resVehicule.setDepart(LocalDateTime.of(2018, 9, 26, 19, 00));
+		resVehicule.setArrive(LocalDateTime.of(2018, 9, 26, 23, 25));
 		this.reservationVehiculeRepo.save(resVehicule);
 
 		ReservationVehicule resVehicule2 = new ReservationVehicule();
 		resVehicule2.setCollegue(col1);
 		resVehicule2.setVehiculeSoc(vehiculeDeSociete);
 		resVehicule2.setChauffeur(false);
+		resVehicule2.setDepart(resVehicule.getDepart());
+		resVehicule2.setArrive(resVehicule.getArrive());
 		this.reservationVehiculeRepo.save(resVehicule2);
-        
-        Annonce annonce = new Annonce();
-        annonce.setCollegue(col1);
-        annonce.setHoraireDeDepart(LocalDateTime.now());
-        annonce.setLieuDeDepart("Nantes");
-        annonce.setLieuDeDestination("Brest");
-        annonce.setNombreDeVoyageurs(6);
-        annonce.setVehicule(vehiculeDeSociete);
-        this.annonceRepo.save(annonce);
-        
-        ReservationCovoiturage reservationCovoiturage = new ReservationCovoiturage();
-        reservationCovoiturage.setAnnonce(annonce);
-        reservationCovoiturage.setCollegue(col2);
-        this.reservationCovoiturageRepo.save(reservationCovoiturage);
-        
+
+		Annonce annonce = new Annonce();
+		annonce.setCollegue(col1);
+		annonce.setHoraireDeDepart(LocalDateTime.now());
+		annonce.setLieuDeDepart("Nantes");
+		annonce.setLieuDeDestination("Brest");
+		annonce.setNombreDeVoyageurs(6);
+		annonce.setVehicule(vehiculeDeSociete);
+		this.annonceRepo.save(annonce);
+
+		ReservationCovoiturage reservationCovoiturage = new ReservationCovoiturage();
+		reservationCovoiturage.setAnnonce(annonce);
+		reservationCovoiturage.setCollegue(col2);
+		this.reservationCovoiturageRepo.save(reservationCovoiturage);
+
 	}
-        
 
 }
