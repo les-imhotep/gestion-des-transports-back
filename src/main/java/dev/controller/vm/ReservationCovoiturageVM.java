@@ -1,15 +1,13 @@
 package dev.controller.vm;
 
 
-import dev.domain.Annonce;
-import dev.domain.Collegue;
 import dev.domain.ReservationCovoiturage;
 
 public class ReservationCovoiturageVM {
 	
 	
-	private Collegue collegue;
-	private Annonce annonce;
+	private CollegueVM collegueVM;
+	private AnnonceVM annonceVM;
 	private Long id;
 	
 	public ReservationCovoiturageVM() {
@@ -19,8 +17,8 @@ public class ReservationCovoiturageVM {
 	public ReservationCovoiturageVM(ReservationCovoiturage reservationCovoiturage) {
 
 		this.id = reservationCovoiturage.getId();
-		this.collegue = reservationCovoiturage.getCollegue();
-		this.annonce = reservationCovoiturage.getAnnonce();
+		this.collegueVM = new CollegueVM(reservationCovoiturage.getCollegue());
+		this.annonceVM = new AnnonceVM(reservationCovoiturage.getAnnonce());
 	}
 	
 	
@@ -33,21 +31,23 @@ public class ReservationCovoiturageVM {
 		this.id = id;
 	}
 
-	public Collegue getCollegue() {
-		return collegue;
+	public CollegueVM getCollegueVM() {
+		return collegueVM;
 	}
 
-	public void setCollegue(Collegue collegue) {
-		this.collegue = collegue;
+	public void setCollegueVM(CollegueVM collegueVM) {
+		this.collegueVM = collegueVM;
 	}
 
-	public Annonce getAnnonce() {
-		return annonce;
+	public AnnonceVM getAnnonceVM() {
+		return annonceVM;
 	}
 
-	public void setAnnonce(Annonce annonce) {
-		this.annonce = annonce;
+	public void setAnnonceVM(AnnonceVM annonceVM) {
+		this.annonceVM = annonceVM;
 	}
+
+	
 	
 	
 	
