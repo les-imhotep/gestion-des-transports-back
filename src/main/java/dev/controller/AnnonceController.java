@@ -30,9 +30,7 @@ public class AnnonceController extends AbstractController {
 	@GetMapping("/annonces")
 	public ResponseEntity<List<AnnonceVM>> listerAnnonces() {
 
-		String username = getUserDetails();
-
-		return ResponseEntity.ok(this.annonceService.findAllAnnonces(username).stream()
+		return ResponseEntity.ok(this.annonceService.listerAnnonces(getUserDetails()).stream()
 				.map(annonce -> new AnnonceVM(annonce)).collect(Collectors.toList()));
 
 	}

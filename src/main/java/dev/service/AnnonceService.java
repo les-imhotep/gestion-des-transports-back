@@ -20,7 +20,7 @@ public class AnnonceService {
 		this.annonceRepo = annonceRepo;
 	}
 
-	public List<Annonce> findAllAnnonces(String username) {
+	public List<Annonce> listerAnnonces(String username) {
 
 		return this.annonceRepo.findAllByCollegueEmail(username);
 	}
