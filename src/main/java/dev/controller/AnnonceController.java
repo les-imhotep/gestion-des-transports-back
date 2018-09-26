@@ -1,5 +1,6 @@
 package dev.controller;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -27,10 +28,20 @@ public class AnnonceController extends AbstractController {
 		this.annonceService = annonceService;
 	}
 
-	@GetMapping("/annonces")
-	public ResponseEntity<List<AnnonceVM>> listerAnnonces() {
+	@GetMapping("/annonces/encours")
+	public ResponseEntity<List<AnnonceVM>> listerAnnoncesEnCours() {
 
 		return ResponseEntity.ok(this.annonceService.listerAnnonces(getUserDetails()).stream()
+				.filter(annonce -> annonce.getHoraireDeDepart().isAfter(LocalDateTime.now()))
+				.map(annonce -> new AnnonceVM(annonce)).collect(Collectors.toList()));
+
+	}
+
+	@GetMapping("/annonces/historique")
+	public ResponseEntity<List<AnnonceVM>> listerAnnoncesHistorique() {
+
+		return ResponseEntity.ok(this.annonceService.listerAnnonces(getUserDetails()).stream()
+				.filter(annonce -> annonce.getHoraireDeDepart().isBefore(LocalDateTime.now()))
 				.map(annonce -> new AnnonceVM(annonce)).collect(Collectors.toList()));
 
 	}
