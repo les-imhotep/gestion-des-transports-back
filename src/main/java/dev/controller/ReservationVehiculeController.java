@@ -2,6 +2,7 @@ package dev.controller;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -29,7 +30,7 @@ public class ReservationVehiculeController extends AbstractController {
 		return ResponseEntity.ok(this.reservationService.listerReservationCollegue(username)
 				.stream()
 				.filter(reservationVehicule -> reservationVehicule.getDepart().isAfter(LocalDateTime.now()))
-				.map(reservationVehicule -> new ReservationVehiculeVM(reservationVehicule)));
+				.map(reservationVehicule -> new ReservationVehiculeVM(reservationVehicule)).collect(Collectors.toList()));
 	}
 	
 	@GetMapping("/reservationsVehicule/historique")
@@ -38,6 +39,6 @@ public class ReservationVehiculeController extends AbstractController {
 		return ResponseEntity.ok(this.reservationService.listerReservationCollegue(username)
 				.stream()
 				.filter(reservationVehicule -> reservationVehicule.getDepart().isBefore(LocalDateTime.now()))
-				.map(reservationVehicule -> new ReservationVehiculeVM(reservationVehicule)));
+				.map(reservationVehicule -> new ReservationVehiculeVM(reservationVehicule)).collect(Collectors.toList()));
 	}
 }
