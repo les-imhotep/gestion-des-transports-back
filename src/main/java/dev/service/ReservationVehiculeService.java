@@ -24,4 +24,8 @@ public class ReservationVehiculeService {
 	public List<ReservationVehicule> listerReservationCollegue(String username) {
 		return this.reservationVehiculeRepo.findByCollegueEmail(username);
 	}
+
+	public void supprimerReservationVehic(Long id) {
+		this.reservationVehiculeRepo.deleteById(id);
+	}
 }

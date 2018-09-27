@@ -20,45 +20,39 @@ import dev.service.AnnonceService;
 @RestController() // @Controller + @ResponseBody
 @RequestMapping("/collaborateur")
 public class AnnonceController extends AbstractController {
-	
+
 	private AnnonceService annonceService;
 
 	public AnnonceController(AnnonceService annonceService) {
 
 		this.annonceService = annonceService;
 	}
-	
+
 	@GetMapping("/annonces/encours")
 	public ResponseEntity<List<AnnonceVM>> listerAnnoncesEnCours() {
 
-
-		return ResponseEntity.ok(this.annonceService.listerAnnonces(getUserDetails())
-				.stream()
-				.filter( annonce -> annonce.getHoraireDeDepart().isAfter(LocalDateTime.now()))
+		return ResponseEntity.ok(this.annonceService.listerAnnonces(getUserDetails()).stream()
+				.filter(annonce -> annonce.getHoraireDeDepart().isAfter(LocalDateTime.now()))
 				.map(annonce -> new AnnonceVM(annonce)).collect(Collectors.toList()));
 
 	}
-	
+
 	@GetMapping("/annonces/historique")
 	public ResponseEntity<List<AnnonceVM>> listerAnnoncesHistorique() {
 
-
-		return ResponseEntity.ok(this.annonceService.listerAnnonces(getUserDetails())
-				.stream()
-				.filter( annonce -> annonce.getHoraireDeDepart().isBefore(LocalDateTime.now()))
+		return ResponseEntity.ok(this.annonceService.listerAnnonces(getUserDetails()).stream()
+				.filter(annonce -> annonce.getHoraireDeDepart().isBefore(LocalDateTime.now()))
 				.map(annonce -> new AnnonceVM(annonce)).collect(Collectors.toList()));
 
 	}
-	
+
 	@PostMapping("/annonces/{id}")
-	public ResponseEntity<String> supprimerAnnonce(@PathVariable("id") Long id/*@RequestBody AnnonceVM annonceVM*/) {
-		
-		
+	public ResponseEntity<String> supprimerAnnonce(
+			@PathVariable("id") Long id/* @RequestBody AnnonceVM annonceVM */) {
+
 		this.annonceService.supprimerAnnonce(id);
-		
+
 		return ResponseEntity.status(HttpStatus.CREATED).build();
 	}
-	
-	
 
 }
