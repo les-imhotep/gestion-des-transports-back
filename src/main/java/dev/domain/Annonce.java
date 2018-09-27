@@ -22,6 +22,7 @@ public class Annonce {
 	private String lieuDeDepart;
 	private String lieuDeDestination;
 	private Integer nombreDeVoyageurs;
+	private Integer nombreDePlacesDisponibles;
 	@OneToMany(mappedBy= "annonce", cascade = CascadeType.ALL)
 	private List<ReservationCovoiturage> listeCovoit;
 	
@@ -36,6 +37,7 @@ public class Annonce {
 		this.lieuDeDepart = lieuDeDepart;
 		this.lieuDeDestination = lieuDeDestination;
 		this.nombreDeVoyageurs = nombreDeVoyageurs;
+		this.nombreDePlacesDisponibles = vehicule.getNombreDePlace()-1;
 	}
 
 	public Long getId() {
@@ -92,6 +94,22 @@ public class Annonce {
 
 	public void setNombreDeVoyageurs(Integer nombreDeVoyageurs) {
 		this.nombreDeVoyageurs = nombreDeVoyageurs;
+	}
+
+	public Integer getNombreDePlacesDisponibles() {
+		return nombreDePlacesDisponibles;
+	}
+
+	public void setNombreDePlacesDisponibles(Integer nombreDePlacesDisponibles) {
+		this.nombreDePlacesDisponibles = nombreDePlacesDisponibles;
+	}
+
+	public List<ReservationCovoiturage> getListeCovoit() {
+		return listeCovoit;
+	}
+
+	public void setListeCovoit(List<ReservationCovoiturage> listeCovoit) {
+		this.listeCovoit = listeCovoit;
 	}
 	
 	

@@ -10,14 +10,12 @@ public class VehiculeDeSociete extends Vehicule {
 	private String photo;
 	@Enumerated(EnumType.STRING)
 	private Categorie categorie;
-	private Boolean disponibilite;
 	@Enumerated(EnumType.STRING)
 	private Statut statut;
 
-	public VehiculeDeSociete(String photo, Categorie categorie, Boolean disponibilite, Statut statut) {
+	public VehiculeDeSociete(String photo, Categorie categorie, Statut statut) {
 		this.photo = photo;
 		this.categorie = categorie;
-		this.disponibilite = disponibilite;
 		this.statut = statut;
 	}
 
@@ -38,14 +36,6 @@ public class VehiculeDeSociete extends Vehicule {
 
 	public void setCategorie(Categorie categorie) {
 		this.categorie = categorie;
-	}
-
-	public Boolean getDisponibilite() {
-		return disponibilite;
-	}
-
-	public void setDisponibilite(Boolean disponibilite) {
-		this.disponibilite = disponibilite;
 	}
 
 	public Statut getStatut() {
