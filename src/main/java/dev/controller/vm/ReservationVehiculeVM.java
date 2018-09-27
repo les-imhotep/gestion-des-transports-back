@@ -8,9 +8,9 @@ public class ReservationVehiculeVM {
 
 	private long id;
 
-	private CollegueVM collegueVM;
+	private CollegueVM collegue;
 
-	private VehiculeDeSocieteVM vehiculeSocVM;
+	private VehiculeDeSocieteVM vehiculeSoc;
 	private Boolean chauffeur;
 
 	private LocalDateTime depart;
@@ -23,8 +23,8 @@ public class ReservationVehiculeVM {
 	public ReservationVehiculeVM(ReservationVehicule resVehicule) {
 		super();
 		this.id = resVehicule.getId();
-		this.collegueVM = new CollegueVM(resVehicule.getCollegue());
-		this.vehiculeSocVM = new VehiculeDeSocieteVM(resVehicule.getVehiculeSoc());
+		this.collegue = new CollegueVM(resVehicule.getCollegue());
+		this.vehiculeSoc = new VehiculeDeSocieteVM(resVehicule.getVehiculeSoc());
 		this.chauffeur = resVehicule.getChauffeur();
 		this.depart = resVehicule.getDepart();
 		this.arrive = resVehicule.getArrive();
@@ -38,20 +38,22 @@ public class ReservationVehiculeVM {
 		this.id = id;
 	}
 
+
+
 	public CollegueVM getCollegue() {
-		return collegueVM;
+		return collegue;
 	}
 
 	public void setCollegue(CollegueVM collegue) {
-		this.collegueVM = collegue;
+		this.collegue = collegue;
 	}
 
 	public VehiculeDeSocieteVM getVehiculeSoc() {
-		return vehiculeSocVM;
+		return vehiculeSoc;
 	}
 
 	public void setVehiculeSoc(VehiculeDeSocieteVM vehiculeSoc) {
-		this.vehiculeSocVM = vehiculeSoc;
+		this.vehiculeSoc = vehiculeSoc;
 	}
 
 	public Boolean getChauffeur() {

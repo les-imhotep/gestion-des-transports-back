@@ -6,8 +6,8 @@ import dev.domain.ReservationCovoiturage;
 public class ReservationCovoiturageVM {
 	
 	
-	private CollegueVM collegueVM;
-	private AnnonceVM annonceVM;
+	private CollegueVM collegue;
+	private AnnonceVM annonce;
 	private Long id;
 	
 	public ReservationCovoiturageVM() {
@@ -17,8 +17,8 @@ public class ReservationCovoiturageVM {
 	public ReservationCovoiturageVM(ReservationCovoiturage reservationCovoiturage) {
 
 		this.id = reservationCovoiturage.getId();
-		this.collegueVM = new CollegueVM(reservationCovoiturage.getCollegue());
-		this.annonceVM = new AnnonceVM(reservationCovoiturage.getAnnonce());
+		this.collegue = new CollegueVM(reservationCovoiturage.getCollegue());
+		this.annonce = new AnnonceVM(reservationCovoiturage.getAnnonce());
 	}
 	
 	
@@ -31,21 +31,23 @@ public class ReservationCovoiturageVM {
 		this.id = id;
 	}
 
-	public CollegueVM getCollegueVM() {
-		return collegueVM;
+	public CollegueVM getCollegue() {
+		return collegue;
 	}
 
-	public void setCollegueVM(CollegueVM collegueVM) {
-		this.collegueVM = collegueVM;
+	public void setCollegue(CollegueVM collegue) {
+		this.collegue = collegue;
 	}
 
-	public AnnonceVM getAnnonceVM() {
-		return annonceVM;
+	public AnnonceVM getAnnonce() {
+		return annonce;
 	}
 
-	public void setAnnonceVM(AnnonceVM annonceVM) {
-		this.annonceVM = annonceVM;
+	public void setAnnonce(AnnonceVM annonce) {
+		this.annonce = annonce;
 	}
+
+
 
 	
 	

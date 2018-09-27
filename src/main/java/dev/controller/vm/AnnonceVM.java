@@ -11,6 +11,8 @@ public class AnnonceVM {
 	private String lieuDeDestination;
 	private Integer nombreDeVoyageurs;
 	private Long id;
+	private VehiculeVM vehicule;
+	private CollegueVM collegue;
 	
 	
 	public AnnonceVM() {
@@ -23,6 +25,8 @@ public class AnnonceVM {
 		this.lieuDeDepart = annonce.getLieuDeDepart();
 		this.lieuDeDestination = annonce.getLieuDeDestination();
 		this.nombreDeVoyageurs = annonce.getNombreDeVoyageurs();
+		this.vehicule = new VehiculeVM(annonce.getVehicule());
+		this.collegue = new CollegueVM(annonce.getCollegue());
 	}
 
 	
@@ -65,6 +69,24 @@ public class AnnonceVM {
 	public void setNombreDeVoyageurs(Integer nombreDeVoyageurs) {
 		this.nombreDeVoyageurs = nombreDeVoyageurs;
 	}
+
+	public VehiculeVM getVehicule() {
+		return vehicule;
+	}
+
+	public void setVehicule(VehiculeVM vehicule) {
+		this.vehicule = vehicule;
+	}
+
+	public CollegueVM getCollegue() {
+		return collegue;
+	}
+
+	public void setCollegue(CollegueVM collegue) {
+		this.collegue = collegue;
+	}
+	
+	
 	
 	
 	
