@@ -80,7 +80,6 @@ public class StartupListener {
 
 		VehiculeDeSociete vehiculeDeSociete = new VehiculeDeSociete();
 		vehiculeDeSociete.setCategorie(Categorie.BERLINE);
-		vehiculeDeSociete.setDisponibilite(true);
 		vehiculeDeSociete.setImmatriculation("AA-666-AA");
 		vehiculeDeSociete.setMarque("Peugeot");
 		vehiculeDeSociete.setModele("106");
