@@ -8,7 +8,6 @@ public class VehiculeDeSocieteVM extends VehiculeVM {
 
 	private String photo;
 	private Categorie categorie;
-	private Boolean disponibilite;
 	private Statut statut;
 	private Long id;
 
@@ -21,7 +20,6 @@ public class VehiculeDeSocieteVM extends VehiculeVM {
 		this.id = vehiculeDeSociete.getId();
 		this.photo = vehiculeDeSociete.getPhoto();
 		this.categorie = vehiculeDeSociete.getCategorie();
-		this.disponibilite = vehiculeDeSociete.getDisponibilite();
 		this.statut = vehiculeDeSociete.getStatut();
 	}
 
@@ -49,13 +47,6 @@ public class VehiculeDeSocieteVM extends VehiculeVM {
 		this.categorie = categorie;
 	}
 
-	public Boolean getDisponibilite() {
-		return disponibilite;
-	}
-
-	public void setDisponibilite(Boolean disponibilite) {
-		this.disponibilite = disponibilite;
-	}
 
 	public Statut getStatut() {
 		return statut;
