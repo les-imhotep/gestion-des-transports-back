@@ -32,6 +32,14 @@ public class AnnonceVM {
 	}
 
 	
+	@Override
+	public String toString() {
+		return "AnnonceVM [horaireDeDepart=" + horaireDeDepart + ", lieuDeDepart=" + lieuDeDepart
+				+ ", lieuDeDestination=" + lieuDeDestination + ", nombreDeVoyageurs=" + nombreDeVoyageurs
+				+ ", nombreDePlacesDisponibles=" + nombreDePlacesDisponibles + ", id=" + id + ", vehicule=" + vehicule
+				+ ", collegue=" + collegue + "]";
+	}
+
 	public Long getId() {
 		return id;
 	}
