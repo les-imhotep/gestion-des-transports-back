@@ -1,6 +1,7 @@
 package dev.controller;
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -60,9 +61,15 @@ public class AnnonceController extends AbstractController {
 	@PostMapping("/annonces/creer")
 	public ResponseEntity<String> creerAnnonce(@RequestBody AnnonceVM annonceVM) {
 		
-		System.out.println(annonceVM);
 		
 		Annonce annonce = Converters.ANNONCE_VM_TO_ANNONCE.convert(annonceVM);
+
+		
+		String dateEtHeure = annonceVM.getJourDeDepart() + " " + annonceVM.getHeureDeDepart();		
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+		LocalDateTime dateTime = LocalDateTime.parse(dateEtHeure, formatter);
+		annonce.setHoraireDeDepart(dateTime);
+
 		
 		this.collegueService.findCollegue(getUserDetails()).ifPresent(collegue -> annonce.setCollegue(collegue));
 
@@ -77,6 +84,8 @@ public class AnnonceController extends AbstractController {
 			this.vehiculeService.send(annonce.getVehicule());
 			
 		}
+		
+		System.out.println(annonce);
 		
 		this.annonceService.send(annonce);
 
@@ -93,5 +102,8 @@ public class AnnonceController extends AbstractController {
 
 		return ResponseEntity.status(HttpStatus.CREATED).build();
 	}
+	
+	
+	
 
 }

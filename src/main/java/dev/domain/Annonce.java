@@ -39,6 +39,16 @@ public class Annonce {
 		this.nombreDeVoyageurs = nombreDeVoyageurs;
 		this.nombreDePlacesDisponibles = vehicule.getNombreDePlace()-1;
 	}
+	
+	
+
+	@Override
+	public String toString() {
+		return "Annonce [id=" + id + ", collegue=" + collegue + ", vehicule=" + vehicule + ", horaireDeDepart="
+				+ horaireDeDepart + ", lieuDeDepart=" + lieuDeDepart + ", lieuDeDestination=" + lieuDeDestination
+				+ ", nombreDeVoyageurs=" + nombreDeVoyageurs + ", nombreDePlacesDisponibles="
+				+ nombreDePlacesDisponibles + ", listeCovoit=" + listeCovoit + "]";
+	}
 
 	public Long getId() {
 		return id;

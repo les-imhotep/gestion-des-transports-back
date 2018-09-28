@@ -7,6 +7,8 @@ import dev.domain.Annonce;
 public class AnnonceVM {
 	
 	private LocalDateTime horaireDeDepart;
+	private String jourDeDepart;	// string coté front
+	private String heureDeDepart; // string coté front
 	private String lieuDeDepart;
 	private String lieuDeDestination;
 	private Integer nombreDeVoyageurs;
@@ -32,12 +34,29 @@ public class AnnonceVM {
 	}
 
 	
+
 	@Override
 	public String toString() {
-		return "AnnonceVM [horaireDeDepart=" + horaireDeDepart + ", lieuDeDepart=" + lieuDeDepart
-				+ ", lieuDeDestination=" + lieuDeDestination + ", nombreDeVoyageurs=" + nombreDeVoyageurs
-				+ ", nombreDePlacesDisponibles=" + nombreDePlacesDisponibles + ", id=" + id + ", vehicule=" + vehicule
-				+ ", collegue=" + collegue + "]";
+		return "AnnonceVM [horaireDeDepart=" + horaireDeDepart + ", jourDeDepart=" + jourDeDepart + ", heureDeDepart="
+				+ heureDeDepart + ", lieuDeDepart=" + lieuDeDepart + ", lieuDeDestination=" + lieuDeDestination
+				+ ", nombreDeVoyageurs=" + nombreDeVoyageurs + ", nombreDePlacesDisponibles="
+				+ nombreDePlacesDisponibles + ", id=" + id + ", vehicule=" + vehicule + ", collegue=" + collegue + "]";
+	}
+
+	public String getJourDeDepart() {
+		return jourDeDepart;
+	}
+
+	public void setJourDeDepart(String jourDeDepart) {
+		this.jourDeDepart = jourDeDepart;
+	}
+
+	public String getHeureDeDepart() {
+		return heureDeDepart;
+	}
+
+	public void setHeureDeDepart(String heureDeDepart) {
+		this.heureDeDepart = heureDeDepart;
 	}
 
 	public Long getId() {
