@@ -17,8 +17,15 @@ public class CollegueVM {
     private String prenom;
     private List<Role> roles = new ArrayList<>();
     private Long id;
+    
+    
 
-    public CollegueVM(Collegue col) {
+    public CollegueVM() {
+		super();
+	}
+
+
+	public CollegueVM(Collegue col) {
     	this.id = col.getId();
         this.email = col.getEmail();
         this.nom = col.getNom();
