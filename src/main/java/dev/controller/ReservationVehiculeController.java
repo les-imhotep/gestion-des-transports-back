@@ -16,6 +16,12 @@ import org.springframework.web.bind.annotation.RestController;
 import dev.controller.vm.ReservationVehiculeVM;
 import dev.service.ReservationVehiculeService;
 
+/**
+ * @author diginamic09
+ * 
+ * Couche de cntrôle faisant le lien entre le front et la couche service pour les réservations de véhicule
+ *
+ */
 @CrossOrigin
 @RestController()
 @RequestMapping("/collaborateur")
@@ -23,10 +29,20 @@ public class ReservationVehiculeController extends AbstractController {
 
 	private ReservationVehiculeService reservationVehiculeService;
 
+	/**
+	 * Injection des dépendances
+	 * 
+	 * @param reservationService
+	 */
 	public ReservationVehiculeController(ReservationVehiculeService reservationService) {
 		this.reservationVehiculeService = reservationService;
 	}
 
+	/**
+	 * GET: toutes les réservation de véhicule dont la date est postérieure à la date du jour
+	 * 
+	 * @return
+	 */
 	@GetMapping("/reservationsVehicule/encours")
 	public ResponseEntity<List<ReservationVehiculeVM>> listerReservationVehiculeEncours() {
 		String username = getUserDetails();
@@ -36,6 +52,11 @@ public class ReservationVehiculeController extends AbstractController {
 				.collect(Collectors.toList()));
 	}
 
+	/**
+	 * GET: toutes les réservation de véhicule dont la date est antérieur à la date du jour
+	 * 
+	 * @return
+	 */
 	@GetMapping("/reservationsVehicule/historique")
 	public ResponseEntity<List<ReservationVehiculeVM>> listerReservationVehiculeHistorique() {
 		String username = getUserDetails();
@@ -45,9 +66,15 @@ public class ReservationVehiculeController extends AbstractController {
 				.collect(Collectors.toList()));
 	}
 
+	/**
+	 * POST : suppression d'une réservation de véhicule en base de données
+	 * 
+	 * @param id
+	 * @return
+	 */
 	@PostMapping("/reservationsVehicule/{id}")
-	public ResponseEntity<String> supprimerAnnonce(@PathVariable("id") Long id) {
-		this.reservationVehiculeService.supprimerReservationVehic(id);
+	public ResponseEntity<String> supprimerReservationVehicule(@PathVariable("id") Long id) {
+		this.reservationVehiculeService.supprimerReservationVehicule(id);
 		return ResponseEntity.status(HttpStatus.CREATED).build();
 	}
 }

@@ -2,6 +2,12 @@ package dev.controller.vm;
 
 import dev.domain.Vehicule;
 
+/**
+ * @author diginamic09
+ * 
+ * Structure modèlisant un véhicule servant à communiquer avec l'extérieur (WEB API).
+ *
+ */
 public class VehiculeVM {
 
 	private String marque;
@@ -11,8 +17,14 @@ public class VehiculeVM {
 	private Long id;
 
 	public VehiculeVM() {
+		super();
 	}
 
+	/**
+	 * Constructeur d'un VehiculeVM à partir d'un VehiculeDeSociete
+	 * 
+	 * @param vehicule
+	 */
 	public VehiculeVM(Vehicule vehicule) {
 		this.id = vehicule.getId();
 		this.marque = vehicule.getMarque();

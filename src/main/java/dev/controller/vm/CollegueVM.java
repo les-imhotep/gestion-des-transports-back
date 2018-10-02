@@ -7,8 +7,12 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
+
 /**
+ * @author diginamic09
+ * 
  * Structure modèlisant un collègue servant à communiquer avec l'extérieur (WEB API).
+ *
  */
 public class CollegueVM {
 
@@ -25,6 +29,11 @@ public class CollegueVM {
 	}
 
 
+	/**
+	 * Constructeur d'un CollegueVM à partir d'un Collegue
+	 * 
+	 * @param col
+	 */
 	public CollegueVM(Collegue col) {
     	this.id = col.getId();
         this.email = col.getEmail();
@@ -32,6 +41,9 @@ public class CollegueVM {
         this.prenom = col.getPrenom();
         this.roles = col.getRoles().stream().map(roleCollegue -> roleCollegue.getRole()).collect(Collectors.toList());
     }
+	
+	
+	/* GETTER - SETTER */
     
 
     public Long getId() {

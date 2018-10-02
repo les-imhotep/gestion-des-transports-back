@@ -37,18 +37,10 @@ public class Annonce {
 		this.lieuDeDepart = lieuDeDepart;
 		this.lieuDeDestination = lieuDeDestination;
 		this.nombreDeVoyageurs = nombreDeVoyageurs;
-		this.nombreDePlacesDisponibles = vehicule.getNombreDePlace()-1;
+		this.nombreDePlacesDisponibles = (vehicule.getNombreDePlace()-1)-nombreDeVoyageurs;
 	}
-	
 	
 
-	@Override
-	public String toString() {
-		return "Annonce [id=" + id + ", collegue=" + collegue + ", vehicule=" + vehicule + ", horaireDeDepart="
-				+ horaireDeDepart + ", lieuDeDepart=" + lieuDeDepart + ", lieuDeDestination=" + lieuDeDestination
-				+ ", nombreDeVoyageurs=" + nombreDeVoyageurs + ", nombreDePlacesDisponibles="
-				+ nombreDePlacesDisponibles + ", listeCovoit=" + listeCovoit + "]";
-	}
 
 	public Long getId() {
 		return id;
@@ -121,6 +113,8 @@ public class Annonce {
 	public void setListeCovoit(List<ReservationCovoiturage> listeCovoit) {
 		this.listeCovoit = listeCovoit;
 	}
+	
+	
 	
 	
 	
