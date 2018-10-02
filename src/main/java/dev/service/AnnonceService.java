@@ -1,6 +1,7 @@
 package dev.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import javax.transaction.Transactional;
 
@@ -40,14 +41,14 @@ public class AnnonceService {
 
 		return this.annonceRepo.findAllByCollegueEmail(username);
 	}
-	
+
 	/**
 	 * Envoie de l'Annonce au repository pour création
 	 * 
 	 * @param annonce
 	 */
 	public void send(Annonce annonce) {
-		
+
 		this.annonceRepo.save(annonce);
 	}
 
@@ -61,4 +62,17 @@ public class AnnonceService {
 		this.annonceRepo.deleteById(id);
 	}
 
+	/**
+	 * Récupére toutes les annonces
+	 * 
+	 * @return
+	 */
+	public List<Annonce> listerAllCovoiturages() {
+
+		return this.annonceRepo.findAll();
+	}
+
+	public Optional<Annonce> findAnnonce(Long id) {
+		return this.annonceRepo.findById(id);
+	}
 }
