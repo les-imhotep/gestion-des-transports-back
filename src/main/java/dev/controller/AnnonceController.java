@@ -25,8 +25,10 @@ import dev.utils.Converters;
 import dev.utils.DateTime;
 
 
-/**
+/** 
  * @author diginamic09
+ * 
+ * Couche de cntrôle faisant le lien entre le front et la couche service pour les Annonces
  *
  */
 @CrossOrigin
@@ -38,6 +40,13 @@ public class AnnonceController extends AbstractController {
 	private CollegueService collegueService;
 	private VehiculeService vehiculeService;
 
+	/**
+	 * Injection des dépendances
+	 * 
+	 * @param annonceService
+	 * @param collegueService
+	 * @param vehiculeService
+	 */
 	public AnnonceController(AnnonceService annonceService, CollegueService collegueService, VehiculeService vehiculeService) {
 
 		this.annonceService = annonceService;

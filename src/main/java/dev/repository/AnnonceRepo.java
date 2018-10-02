@@ -8,12 +8,14 @@ import dev.domain.Annonce;
 
 /**
  * @author diginamic09
+ * 
+ * Repository des Annonces pour utilisation de JPA
  *
  */
 public interface AnnonceRepo extends JpaRepository<Annonce, Long> {
 	
 	/**
-	 * Liste des annonces pour un utilisateur
+	 * Liste des annonces pour un utilisateur donné
 	 * 
 	 * @param username
 	 * @return

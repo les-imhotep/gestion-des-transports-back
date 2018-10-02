@@ -16,6 +16,12 @@ import org.springframework.web.bind.annotation.RestController;
 import dev.controller.vm.ReservationCovoiturageVM;
 import dev.service.ReservationCovoiturageService;
 
+/** 
+ * @author diginamic09
+ * 
+ * Couche de cntrôle faisant le lien entre le front et la couche service pour les réservations de covoiturage
+ *
+ */
 @CrossOrigin
 @RestController()
 @RequestMapping("/collaborateur")
@@ -23,12 +29,22 @@ public class ReservationCovoiturageController extends AbstractController {
 	
 	private ReservationCovoiturageService reservationCovoiturageService;
 
+	/**
+	 * Injection des dépendances
+	 * 
+	 * @param reservationCovoiturageService
+	 */
 	public ReservationCovoiturageController(ReservationCovoiturageService reservationCovoiturageService) {
 		
 		this.reservationCovoiturageService = reservationCovoiturageService;
 	}
 	
 	
+	/**
+	 * GET: toutes les réservation de covoiturage dont la date est postérieure à la date du jour
+	 * 
+	 * @return
+	 */
 	@GetMapping("/reservationsCovoiturage/encours")
 	public ResponseEntity<List<ReservationCovoiturageVM>> listerCovoiturageEncours() {
 
@@ -40,6 +56,11 @@ public class ReservationCovoiturageController extends AbstractController {
 
 	}
 	
+	/**
+	 * GET: toutes les réservation de covoiturage dont la date est antérieur à la date du jour
+	 * 
+	 * @return
+	 */
 	@GetMapping("/reservationsCovoiturage/historique")
 	public ResponseEntity<List<ReservationCovoiturageVM>> listerCovoiturageHistorique() {
 
@@ -51,8 +72,14 @@ public class ReservationCovoiturageController extends AbstractController {
 
 	}
 	
+	/**
+	 * POST : suppression d'un covoiturage en base de données
+	 * 
+	 * @param id
+	 * @return
+	 */
 	@PostMapping("/reservationsCovoiturage/{id}")
-	public ResponseEntity<String> supprimerAnnonce(@PathVariable("id") Long id/*@RequestBody AnnonceVM annonceVM*/) {
+	public ResponseEntity<String> supprimerCovoiturage(@PathVariable("id") Long id) {
 		
 		
 		this.reservationCovoiturageService.supprimerCovoiturage(id);

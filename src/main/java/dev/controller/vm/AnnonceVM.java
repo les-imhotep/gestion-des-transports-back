@@ -8,7 +8,7 @@ import dev.utils.Converters;
 /**
  * @author diginamic09
  * 
- * Annonce View Model
+ * Structure modèlisant une annonce servant à communiquer avec l'extérieur (WEB API).
  *
  */
 public class AnnonceVM {
@@ -26,11 +26,11 @@ public class AnnonceVM {
 	
 	
 	public AnnonceVM() {
-		
+		super();
 	}
 
 	/**
-	 * Constructeur d'un AnnonceVM à partir d'une Annonce
+	 * Constructeur d'une AnnonceVM à partir d'une Annonce
 	 * 
 	 * @param annonce
 	 */
