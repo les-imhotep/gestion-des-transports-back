@@ -126,8 +126,6 @@ public class AnnonceController extends AbstractController {
 
 		this.annonceService.send(annonce);
 
-		this.annonceService.send(annonce);
-
 		return ResponseEntity.status(HttpStatus.CREATED).build();
 	}
 
@@ -146,6 +144,12 @@ public class AnnonceController extends AbstractController {
 		return ResponseEntity.status(HttpStatus.CREATED).build();
 	}
 
+	/**
+	 * GET : Récupére toutes les annonces dont la date est postérieure à la date
+	 * du jour
+	 * 
+	 * @return
+	 */
 	@GetMapping("/annonces")
 	public ResponseEntity<List<AnnonceVM>> listerCovoiturages() {
 		return ResponseEntity.ok(this.annonceService.listerAllCovoiturages().stream()

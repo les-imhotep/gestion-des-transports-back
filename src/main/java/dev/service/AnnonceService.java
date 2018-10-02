@@ -1,6 +1,7 @@
 package dev.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import javax.transaction.Transactional;
 
@@ -60,9 +61,17 @@ public class AnnonceService {
 		this.annonceRepo.deleteById(id);
 	}
 
+	/**
+	 * Récupére toutes les annonces
+	 * 
+	 * @return
+	 */
 	public List<Annonce> listerAllCovoiturages() {
 
 		return this.annonceRepo.findAll();
 	}
 
+	public Optional<Annonce> findAnnonce(Long id) {
+		return this.annonceRepo.findById(id);
+	}
 }

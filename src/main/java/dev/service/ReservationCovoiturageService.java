@@ -19,11 +19,6 @@ public class ReservationCovoiturageService {
 		this.reservationCovoiturageRepo = reservationCovoiturageRepo;
 	}
 
-	// public List<ReservationCovoiturage> listerAllCovoiturages() {
-	//
-	// return this.reservationCovoiturageRepo.findAll();
-	// }
-
 	public List<ReservationCovoiturage> listerCovoiturages(String username) {
 
 		return this.reservationCovoiturageRepo.findAllByCollegueEmail(username);
@@ -32,6 +27,10 @@ public class ReservationCovoiturageService {
 	public void supprimerCovoiturage(Long id) {
 
 		this.reservationCovoiturageRepo.deleteById(id);
+	}
+
+	public void send(ReservationCovoiturage resCovoiturage) {
+		this.reservationCovoiturageRepo.save(resCovoiturage);
 	}
 
 }

@@ -116,8 +116,8 @@ public class StartupListener {
 		Annonce annonce2 = new Annonce();
 		annonce2.setCollegue(col1);
 		annonce2.setHoraireDeDepart(LocalDateTime.of(2014, 9, 30, 19, 00));
-		annonce2.setLieuDeDepart("Nantes");
-		annonce2.setLieuDeDestination("Brest");
+		annonce2.setLieuDeDepart("Brest");
+		annonce2.setLieuDeDestination("Nantes");
 		annonce2.setNombreDeVoyageurs(6);
 		annonce2.setVehicule(vehiculeDeSociete);
 		this.annonceRepo.save(annonce2);
