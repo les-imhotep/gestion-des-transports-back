@@ -3,7 +3,14 @@ package dev.controller.vm;
 import java.time.LocalDateTime;
 
 import dev.domain.Annonce;
+import dev.utils.Converters;
 
+/**
+ * @author diginamic09
+ * 
+ * Annonce View Model
+ *
+ */
 public class AnnonceVM {
 	
 	private LocalDateTime horaireDeDepart;
@@ -22,9 +29,16 @@ public class AnnonceVM {
 		
 	}
 
+	/**
+	 * Constructeur d'un AnnonceVM à partir d'une Annonce
+	 * 
+	 * @param annonce
+	 */
 	public AnnonceVM(Annonce annonce) {
 		this.id = annonce.getId();
 		this.horaireDeDepart = annonce.getHoraireDeDepart();
+		this.heureDeDepart = Converters.LOCALDATETIME_TO_STRING_TIME.convert(annonce.getHoraireDeDepart());
+		this.jourDeDepart = Converters.LOCALDATETIME_TO_STRING_DATE.convert(annonce.getHoraireDeDepart());
 		this.lieuDeDepart = annonce.getLieuDeDepart();
 		this.lieuDeDestination = annonce.getLieuDeDestination();
 		this.nombreDeVoyageurs = annonce.getNombreDeVoyageurs();
@@ -34,14 +48,7 @@ public class AnnonceVM {
 	}
 
 	
-
-	@Override
-	public String toString() {
-		return "AnnonceVM [horaireDeDepart=" + horaireDeDepart + ", jourDeDepart=" + jourDeDepart + ", heureDeDepart="
-				+ heureDeDepart + ", lieuDeDepart=" + lieuDeDepart + ", lieuDeDestination=" + lieuDeDestination
-				+ ", nombreDeVoyageurs=" + nombreDeVoyageurs + ", nombreDePlacesDisponibles="
-				+ nombreDePlacesDisponibles + ", id=" + id + ", vehicule=" + vehicule + ", collegue=" + collegue + "]";
-	}
+	/* GETTER - SETTER */
 
 	public String getJourDeDepart() {
 		return jourDeDepart;
