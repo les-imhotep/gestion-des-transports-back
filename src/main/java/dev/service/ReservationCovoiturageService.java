@@ -19,10 +19,10 @@ public class ReservationCovoiturageService {
 		this.reservationCovoiturageRepo = reservationCovoiturageRepo;
 	}
 
-	public List<ReservationCovoiturage> listerAllCovoiturages() {
-
-		return this.reservationCovoiturageRepo.findAll();
-	}
+	// public List<ReservationCovoiturage> listerAllCovoiturages() {
+	//
+	// return this.reservationCovoiturageRepo.findAll();
+	// }
 
 	public List<ReservationCovoiturage> listerCovoiturages(String username) {
 

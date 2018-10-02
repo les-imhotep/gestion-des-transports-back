@@ -28,15 +28,19 @@ public class ReservationCovoiturageController extends AbstractController {
 		this.reservationCovoiturageService = reservationCovoiturageService;
 	}
 
-	@GetMapping("/reservationsCovoiturage")
-	public ResponseEntity<List<ReservationCovoiturageVM>> listerCovoiturages() {
-		return ResponseEntity.ok(this.reservationCovoiturageService.listerAllCovoiturages().stream()
-				.filter(reservationCovoiturage -> reservationCovoiturage.getAnnonce().getHoraireDeDepart()
-						.isAfter(LocalDateTime.now()))
-				.map(reservationCovoiturage -> new ReservationCovoiturageVM(reservationCovoiturage))
-				.collect(Collectors.toList()));
-
-	}
+	// @GetMapping("/reservationsCovoiturage")
+	// public ResponseEntity<List<ReservationCovoiturageVM>>
+	// listerCovoiturages() {
+	// return
+	// ResponseEntity.ok(this.reservationCovoiturageService.listerAllCovoiturages().stream()
+	// .filter(reservationCovoiturage ->
+	// reservationCovoiturage.getAnnonce().getHoraireDeDepart()
+	// .isAfter(LocalDateTime.now()))
+	// .map(reservationCovoiturage -> new
+	// ReservationCovoiturageVM(reservationCovoiturage))
+	// .collect(Collectors.toList()));
+	//
+	// }
 
 	@GetMapping("/reservationsCovoiturage/encours")
 	public ResponseEntity<List<ReservationCovoiturageVM>> listerCovoiturageEncours() {

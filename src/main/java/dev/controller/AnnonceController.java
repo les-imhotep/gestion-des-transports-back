@@ -33,7 +33,8 @@ public class AnnonceController extends AbstractController {
 	private CollegueService collegueService;
 	private VehiculeService vehiculeService;
 
-	public AnnonceController(AnnonceService annonceService, CollegueService collegueService, VehiculeService vehiculeService) {
+	public AnnonceController(AnnonceService annonceService, CollegueService collegueService,
+			VehiculeService vehiculeService) {
 
 		this.annonceService = annonceService;
 		this.collegueService = collegueService;
@@ -57,42 +58,37 @@ public class AnnonceController extends AbstractController {
 				.map(annonce -> new AnnonceVM(annonce)).collect(Collectors.toList()));
 
 	}
-	
+
 	@PostMapping("/annonces/creer")
 	public ResponseEntity<String> creerAnnonce(@RequestBody AnnonceVM annonceVM) {
-		
-		
+
 		Annonce annonce = Converters.ANNONCE_VM_TO_ANNONCE.convert(annonceVM);
 
-		
-		String dateEtHeure = annonceVM.getJourDeDepart() + " " + annonceVM.getHeureDeDepart();	
+		String dateEtHeure = annonceVM.getJourDeDepart() + " " + annonceVM.getHeureDeDepart();
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
 		LocalDateTime dateTime = LocalDateTime.parse(dateEtHeure, formatter);
 		annonce.setHoraireDeDepart(dateTime);
 
-		
 		this.collegueService.findCollegue(getUserDetails()).ifPresent(collegue -> annonce.setCollegue(collegue));
 
-		Optional<Vehicule> optVehicule = this.vehiculeService.findByImmatriculation(annonceVM.getVehicule().getImmatriculation());
+		Optional<Vehicule> optVehicule = this.vehiculeService
+				.findByImmatriculation(annonceVM.getVehicule().getImmatriculation());
 		if (optVehicule.isPresent()) {
-			
+
 			annonce.setVehicule(optVehicule.get());
-		}
-		else {
-			
+		} else {
+
 			annonce.setVehicule(Converters.VEHICULE_VM_TO_VEHICULE.convert(annonceVM.getVehicule()));
 			this.vehiculeService.send(annonce.getVehicule());
-			
+
 		}
-		
+
 		System.out.println(annonce);
-		
+
 		this.annonceService.send(annonce);
 
-
 		return ResponseEntity.status(HttpStatus.CREATED).build();
-}
-	
+	}
 
 	@PostMapping("/annonces/{id}")
 	public ResponseEntity<String> supprimerAnnonce(
@@ -102,8 +98,11 @@ public class AnnonceController extends AbstractController {
 
 		return ResponseEntity.status(HttpStatus.CREATED).build();
 	}
-	
-	
-	
 
+	@GetMapping("/annonces")
+	public ResponseEntity<List<AnnonceVM>> listerCovoiturages() {
+		return ResponseEntity.ok(this.annonceService.listerAllCovoiturages().stream()
+				.filter(annonce -> annonce.getHoraireDeDepart().isAfter(LocalDateTime.now()))
+				.map(annonce -> new AnnonceVM(annonce)).collect(Collectors.toList()));
+	}
 }

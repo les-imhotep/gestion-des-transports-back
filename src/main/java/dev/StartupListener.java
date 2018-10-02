@@ -127,6 +127,35 @@ public class StartupListener {
 		reservationCovoiturage.setCollegue(col2);
 		this.reservationCovoiturageRepo.save(reservationCovoiturage);
 
+		/*******************************************/
+
+		Annonce annonce3 = new Annonce();
+		annonce3.setCollegue(col1);
+		annonce3.setHoraireDeDepart(LocalDateTime.of(2018, 10, 22, 17, 00));
+		annonce3.setLieuDeDepart("Le Mans");
+		annonce3.setLieuDeDestination("Angers");
+		annonce3.setNombreDeVoyageurs(4);
+		annonce3.setVehicule(vehiculeDeSociete);
+		this.annonceRepo.save(annonce3);
+
+		Annonce annonce4 = new Annonce();
+		annonce4.setCollegue(col2);
+		annonce4.setHoraireDeDepart(LocalDateTime.of(2018, 10, 20, 17, 50));
+		annonce4.setLieuDeDepart("Angers");
+		annonce4.setLieuDeDestination("Le Mans");
+		annonce4.setNombreDeVoyageurs(4);
+		annonce4.setVehicule(vehiculeDeSociete);
+		this.annonceRepo.save(annonce4);
+
+		Annonce annonce5 = new Annonce();
+		annonce5.setCollegue(col2);
+		annonce5.setHoraireDeDepart(LocalDateTime.of(2018, 10, 30, 17, 25));
+		annonce5.setLieuDeDepart("Nantes");
+		annonce5.setLieuDeDestination("Angers");
+		annonce5.setNombreDeVoyageurs(6);
+		annonce5.setVehicule(vehiculeDeSociete);
+		this.annonceRepo.save(annonce5);
+
 	}
 
 }

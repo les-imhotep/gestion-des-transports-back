@@ -24,15 +24,20 @@ public class AnnonceService {
 
 		return this.annonceRepo.findAllByCollegueEmail(username);
 	}
-	
+
 	public void send(Annonce annonce) {
-		
+
 		this.annonceRepo.save(annonce);
 	}
 
 	public void supprimerAnnonce(Long id) {
 
 		this.annonceRepo.deleteById(id);
+	}
+
+	public List<Annonce> listerAllCovoiturages() {
+
+		return this.annonceRepo.findAll();
 	}
 
 }
