@@ -1,7 +1,6 @@
 package dev.controller;
 
 import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -23,7 +22,13 @@ import dev.service.AnnonceService;
 import dev.service.CollegueService;
 import dev.service.VehiculeService;
 import dev.utils.Converters;
+import dev.utils.DateTime;
 
+
+/**
+ * @author diginamic09
+ *
+ */
 @CrossOrigin
 @RestController() // @Controller + @ResponseBody
 @RequestMapping("/collaborateur")
@@ -40,6 +45,11 @@ public class AnnonceController extends AbstractController {
 		this.vehiculeService = vehiculeService;
 	}
 
+	/**
+	 * GET: toutes les annonces dont la date est postérieure à la date du jour
+	 * 
+	 * @return
+	 */
 	@GetMapping("/annonces/encours")
 	public ResponseEntity<List<AnnonceVM>> listerAnnoncesEnCours() {
 
@@ -49,6 +59,11 @@ public class AnnonceController extends AbstractController {
 
 	}
 
+	/**
+	 * GET: toutes les annonces dont la date est antérieure à la date du jour
+	 * 
+	 * @return
+	 */
 	@GetMapping("/annonces/historique")
 	public ResponseEntity<List<AnnonceVM>> listerAnnoncesHistorique() {
 
@@ -58,20 +73,31 @@ public class AnnonceController extends AbstractController {
 
 	}
 	
+	/**
+	 * POST: Ecriture d'une Annonce en base de données via send() de annonceService
+
+	 * 
+	 * @param annonceVM
+	 * @return
+	 */
 	@PostMapping("/annonces/creer")
 	public ResponseEntity<String> creerAnnonce(@RequestBody AnnonceVM annonceVM) {
 		
+		/* Conversion d'une AnnonceVM en annonce */
 		
 		Annonce annonce = Converters.ANNONCE_VM_TO_ANNONCE.convert(annonceVM);
-
 		
-		String dateEtHeure = annonceVM.getJourDeDepart() + " " + annonceVM.getHeureDeDepart();	
-		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
-		LocalDateTime dateTime = LocalDateTime.parse(dateEtHeure, formatter);
-		annonce.setHoraireDeDepart(dateTime);
+		/* Concaténation de la date (string) et de l'heure (string) en LocalDateTime via une méthode abstraite*/
+		
+		LocalDateTime horaireDeDepart = DateTime.dateEtHeureToLocalDateTime(annonceVM.getJourDeDepart(), annonceVM.getHeureDeDepart());
 
+		annonce.setHoraireDeDepart(horaireDeDepart);
+
+		/* Récupération des données de l'utilisateur connecté dans la base de données */
 		
 		this.collegueService.findCollegue(getUserDetails()).ifPresent(collegue -> annonce.setCollegue(collegue));
+		
+		/* Contrôle de l'existence du véhicule en base de donnée pour éviter les doublons*/
 
 		Optional<Vehicule> optVehicule = this.vehiculeService.findByImmatriculation(annonceVM.getVehicule().getImmatriculation());
 		if (optVehicule.isPresent()) {
@@ -85,7 +111,7 @@ public class AnnonceController extends AbstractController {
 			
 		}
 		
-		System.out.println(annonce);
+		/* Appel de la méthode send() du service pour écrire en base */
 		
 		this.annonceService.send(annonce);
 
@@ -94,6 +120,12 @@ public class AnnonceController extends AbstractController {
 }
 	
 
+	/**
+	 * POST : suppression d'une Annonce en base de données
+	 * 
+	 * @param id
+	 * @return
+	 */
 	@PostMapping("/annonces/{id}")
 	public ResponseEntity<String> supprimerAnnonce(
 			@PathVariable("id") Long id/* @RequestBody AnnonceVM annonceVM */) {
