@@ -1,8 +1,14 @@
 package dev.controller.vm;
 
-
 import dev.domain.ReservationCovoiturage;
 
+
+/**
+ * @author diginamic09
+ * 
+ * Structure modèlisant une réservation de covoiturage servant à communiquer avec l'extérieur (WEB API).
+ *
+ */
 public class ReservationCovoiturageVM {
 	
 	
@@ -11,9 +17,14 @@ public class ReservationCovoiturageVM {
 	private Long id;
 	
 	public ReservationCovoiturageVM() {
-		
+		super();
 	}
 
+	/**
+	 * Constructeur d'une ReservationCovoiturageVM à partir d'une ReservationCovoiturage
+	 * 
+	 * @param reservationCovoiturage
+	 */
 	public ReservationCovoiturageVM(ReservationCovoiturage reservationCovoiturage) {
 
 		this.id = reservationCovoiturage.getId();
@@ -22,6 +33,7 @@ public class ReservationCovoiturageVM {
 	}
 	
 	
+	/* GETTER - SETTER */
 
 	public Long getId() {
 		return id;

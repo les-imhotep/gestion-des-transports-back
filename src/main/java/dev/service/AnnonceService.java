@@ -12,6 +12,7 @@ import dev.repository.AnnonceRepo;
 /**
  * @author diginamic09
  *
+ * Couche de service faisant le lien entre la base de données et la couche de contrôle pour les Annonces
  */
 @Service
 @Transactional
@@ -20,7 +21,7 @@ public class AnnonceService {
 	private AnnonceRepo annonceRepo;
 
 	/**
-	 * Injection de bean
+	 * Injection des dépendances
 	 * 
 	 * @param annonceRepo
 	 */

@@ -4,24 +4,32 @@ import java.time.LocalDateTime;
 
 import dev.domain.ReservationVehicule;
 
+/**
+ * @author diginamic09
+ * 
+ * Structure modèlisant une réservation de véhicule servant à communiquer avec l'extérieur (WEB API).
+ *
+ */
 public class ReservationVehiculeVM {
 
 	private long id;
-
 	private CollegueVM collegue;
-
 	private VehiculeDeSocieteVM vehiculeSoc;
 	private Boolean chauffeur;
-
 	private LocalDateTime depart;
-
 	private LocalDateTime arrive;
 
 	public ReservationVehiculeVM() {
+		super();
 	}
 
+	/**
+	 * Constructeur d'une ReservationVehiculeVM à partir d'une ReservationVehicule
+	 * 
+	 * @param resVehicule
+	 */
 	public ReservationVehiculeVM(ReservationVehicule resVehicule) {
-		super();
+		
 		this.id = resVehicule.getId();
 		this.collegue = new CollegueVM(resVehicule.getCollegue());
 		this.vehiculeSoc = new VehiculeDeSocieteVM(resVehicule.getVehiculeSoc());
@@ -29,6 +37,8 @@ public class ReservationVehiculeVM {
 		this.depart = resVehicule.getDepart();
 		this.arrive = resVehicule.getArrive();
 	}
+	
+	/* GETTER - SETTER */
 
 	public long getId() {
 		return id;

@@ -4,6 +4,12 @@ import dev.domain.Categorie;
 import dev.domain.Statut;
 import dev.domain.VehiculeDeSociete;
 
+/**
+ * @author diginamic09
+ * 
+ * Structure modèlisant un véhicule de société servant à communiquer avec l'extérieur (WEB API).
+ *
+ */
 public class VehiculeDeSocieteVM extends VehiculeVM {
 
 	private String photo;
@@ -12,16 +18,24 @@ public class VehiculeDeSocieteVM extends VehiculeVM {
 	private Long id;
 
 	public VehiculeDeSocieteVM() {
-
+		super();
 	}
 
+	/**
+	 * Constructeur d'un VehiculeDeSocieteVM à partir d'un VehiculeDeSociete
+	 * 
+	 * @param vehiculeDeSociete
+	 */
 	public VehiculeDeSocieteVM(VehiculeDeSociete vehiculeDeSociete) {
+		
 		super(vehiculeDeSociete);
 		this.id = vehiculeDeSociete.getId();
 		this.photo = vehiculeDeSociete.getPhoto();
 		this.categorie = vehiculeDeSociete.getCategorie();
 		this.statut = vehiculeDeSociete.getStatut();
 	}
+	
+	/* GETTER - SETTER */
 
 	public Long getId() {
 		return id;
