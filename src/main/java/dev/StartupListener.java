@@ -79,14 +79,24 @@ public class StartupListener {
 		this.collegueRepo.save(col2);
 
 		VehiculeDeSociete vehiculeDeSociete = new VehiculeDeSociete();
-		vehiculeDeSociete.setCategorie(Categorie.BERLINE);
+		vehiculeDeSociete.setCategorie(Categorie.CITADINE);
 		vehiculeDeSociete.setImmatriculation("AA-666-AA");
 		vehiculeDeSociete.setMarque("Peugeot");
 		vehiculeDeSociete.setModele("106");
 		vehiculeDeSociete.setNombreDePlace(4);
-		vehiculeDeSociete.setPhoto("fghjklmù");
+		vehiculeDeSociete.setPhoto("http://car-from-uk.com/ebay/carphotos/full/ebay681106.jpg");
 		vehiculeDeSociete.setStatut(Statut.HORS_SERVICE);
 		this.vehiculeRepo.save(vehiculeDeSociete);
+		
+		VehiculeDeSociete vehiculeDeSociete2 = new VehiculeDeSociete();
+		vehiculeDeSociete2.setCategorie(Categorie.SUV);
+		vehiculeDeSociete2.setImmatriculation("BB-777-BB");
+		vehiculeDeSociete2.setMarque("Peugeot");
+		vehiculeDeSociete2.setModele("3008");
+		vehiculeDeSociete2.setNombreDePlace(5);
+		vehiculeDeSociete2.setPhoto("https://motor.elpais.com/wp-content/uploads/2017/06/26144725/peugeot-3008.jpg");
+		vehiculeDeSociete2.setStatut(Statut.EN_SERVICE);
+		this.vehiculeRepo.save(vehiculeDeSociete2);
 
 		ReservationVehicule resVehicule = new ReservationVehicule();
 		resVehicule.setCollegue(col2);
