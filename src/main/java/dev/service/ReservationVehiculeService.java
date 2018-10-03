@@ -54,4 +54,13 @@ public class ReservationVehiculeService {
 	public void supprimerReservationVehicule(Long id) {
 		this.reservationVehiculeRepo.deleteById(id);
 	}
+	
+	/**
+	 * envoie d'une reservation de vehicule dans la base de données
+	 * 
+	 * @param resVehicule
+	 */
+	public void send(ReservationVehicule resVehicule) {
+		this.reservationVehiculeRepo.save(resVehicule);
+	}
 }
