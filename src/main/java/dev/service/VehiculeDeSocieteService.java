@@ -1,6 +1,7 @@
 package dev.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import javax.transaction.Transactional;
 
@@ -24,6 +25,11 @@ public class VehiculeDeSocieteService {
 	public List<VehiculeDeSociete> listerVehiculeDeSociete() {
 
 		return this.vehiculeDeSocieteRepo.findAll();
+	}
+	
+	public Optional<VehiculeDeSociete> findByImmatriculation(String immatriculation) {
+
+		return this.vehiculeDeSocieteRepo.findByImmatriculation(immatriculation);
 	}
 
 }

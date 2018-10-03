@@ -2,6 +2,7 @@ package dev.controller;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 import org.springframework.http.HttpStatus;
@@ -10,11 +11,17 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import dev.controller.vm.ReservationVehiculeVM;
+import dev.domain.Collegue;
+import dev.domain.ReservationVehicule;
+import dev.domain.VehiculeDeSociete;
+import dev.service.CollegueService;
 import dev.service.ReservationVehiculeService;
+import dev.service.VehiculeDeSocieteService;
 
 /**
  * @author diginamic09
@@ -28,14 +35,18 @@ import dev.service.ReservationVehiculeService;
 public class ReservationVehiculeController extends AbstractController {
 
 	private ReservationVehiculeService reservationVehiculeService;
+	private CollegueService collegueService;
+	private VehiculeDeSocieteService vehiculeDeSocieteService;
 
 	/**
 	 * Injection des dépendances
 	 * 
 	 * @param reservationService
 	 */
-	public ReservationVehiculeController(ReservationVehiculeService reservationService) {
+	public ReservationVehiculeController(ReservationVehiculeService reservationService, CollegueService collegueService, VehiculeDeSocieteService vehiculeDeSocieteService) {
 		this.reservationVehiculeService = reservationService;
+		this.collegueService = collegueService;
+		this.vehiculeDeSocieteService = vehiculeDeSocieteService;
 	}
 
 	/**
@@ -75,6 +86,33 @@ public class ReservationVehiculeController extends AbstractController {
 	@PostMapping("/reservationsVehicule/{id}")
 	public ResponseEntity<String> supprimerReservationVehicule(@PathVariable("id") Long id) {
 		this.reservationVehiculeService.supprimerReservationVehicule(id);
+		return ResponseEntity.status(HttpStatus.CREATED).build();
+	}
+	
+	/**
+	 * POST : Ajout d'une réservation de véhicule de société en base de données
+	 * 
+	 * @param reservationVehiculeVM
+	 * @return
+	 */
+	@PostMapping("/reservationsVehicule/creer")
+	public ResponseEntity<String> creerReservationVehicule(@RequestBody ReservationVehiculeVM reservationVehiculeVM){
+		
+		ReservationVehicule resVehicule = new ReservationVehicule();
+		
+		Optional<Collegue> optCollegue = this.collegueService.findCollegue(getUserDetails());
+		//System.out.println("hgjgh "+reservationVehiculeVM.getDepart());
+		Optional<VehiculeDeSociete> optVehicule = this.vehiculeDeSocieteService
+				.findByImmatriculation(reservationVehiculeVM.getVehiculeSoc().getImmatriculation());
+		
+		resVehicule.setVehiculeSoc(optVehicule.get());
+		resVehicule.setCollegue(optCollegue.get());
+		resVehicule.setDepart(reservationVehiculeVM.getDepart());
+		resVehicule.setArrive(reservationVehiculeVM.getArrive());
+		resVehicule.setChauffeur(false);
+		
+		this.reservationVehiculeService.send(resVehicule);
+		
 		return ResponseEntity.status(HttpStatus.CREATED).build();
 	}
 }

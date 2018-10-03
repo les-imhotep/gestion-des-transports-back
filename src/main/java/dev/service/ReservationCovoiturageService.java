@@ -52,6 +52,11 @@ public class ReservationCovoiturageService {
 		this.reservationCovoiturageRepo.deleteById(id);
 	}
 
+	/**
+	 * envoie d'une reservation de covoiturage dans la base de données
+	 * 
+	 * @param resCovoiturage
+	 */
 	public void send(ReservationCovoiturage resCovoiturage) {
 		this.reservationCovoiturageRepo.save(resCovoiturage);
 	}

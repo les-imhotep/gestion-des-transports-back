@@ -96,6 +96,12 @@ public class ReservationCovoiturageController extends AbstractController {
 		return ResponseEntity.status(HttpStatus.CREATED).build();
 	}
 
+	/**
+	 * POST : Ajout d'une réservation de covoiturage en base de données
+	 * 
+	 * @param annonceVM
+	 * @return
+	 */
 	@PostMapping("/reservationsCovoiturage/creer")
 	public ResponseEntity<String> creerCovoiturage(@RequestBody AnnonceVM annonceVM) {
 
