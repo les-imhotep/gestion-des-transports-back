@@ -101,7 +101,6 @@ public class ReservationVehiculeController extends AbstractController {
 		ReservationVehicule resVehicule = new ReservationVehicule();
 		
 		Optional<Collegue> optCollegue = this.collegueService.findCollegue(getUserDetails());
-		//System.out.println("hgjgh "+reservationVehiculeVM.getDepart());
 		Optional<VehiculeDeSociete> optVehicule = this.vehiculeDeSocieteService
 				.findByImmatriculation(reservationVehiculeVM.getVehiculeSoc().getImmatriculation());
 		
