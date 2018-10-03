@@ -3,44 +3,50 @@ package dev.domain;
 import java.time.LocalDateTime;
 import java.util.List;
 
-import javax.persistence.*;
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 @Entity
 public class Annonce {
-	
+
 	@Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-	
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
+
 	@ManyToOne
-	@JoinColumn(name="collegue_id")
+	@JoinColumn(name = "collegue_id")
 	private Collegue collegue;
 	@ManyToOne
-	@JoinColumn(name="vehicule_id")
+	@JoinColumn(name = "vehicule_id")
 	private Vehicule vehicule;
 	private LocalDateTime horaireDeDepart;
 	private String lieuDeDepart;
 	private String lieuDeDestination;
 	private Integer nombreDeVoyageurs;
 	private Integer nombreDePlacesDisponibles;
-	@OneToMany(mappedBy= "annonce", cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "annonce", cascade = CascadeType.ALL)
 	private List<ReservationCovoiturage> listeCovoit;
-	
+
 	public Annonce() {
 	}
 
 	public Annonce(Collegue collegue, Vehicule vehicule, LocalDateTime horaireDeDepart, String lieuDeDepart,
 			String lieuDeDestination, Integer nombreDeVoyageurs) {
+		this.nombreDePlacesDisponibles = (vehicule.getNombreDePlace() - 1) - nombreDeVoyageurs;
 		this.collegue = collegue;
 		this.vehicule = vehicule;
 		this.horaireDeDepart = horaireDeDepart;
 		this.lieuDeDepart = lieuDeDepart;
 		this.lieuDeDestination = lieuDeDestination;
 		this.nombreDeVoyageurs = nombreDeVoyageurs;
-		this.nombreDePlacesDisponibles = (vehicule.getNombreDePlace()-1)-nombreDeVoyageurs;
-	}
-	
 
+	}
 
 	public Long getId() {
 		return id;
@@ -113,16 +119,5 @@ public class Annonce {
 	public void setListeCovoit(List<ReservationCovoiturage> listeCovoit) {
 		this.listeCovoit = listeCovoit;
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 
 }

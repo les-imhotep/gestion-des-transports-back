@@ -132,8 +132,10 @@ public class AnnonceController extends AbstractController {
 
 		}
 
-		/* Appel de la méthode send() du service pour écrire en base */
+		/* Défini le nombre de voyageurs à 0 pour éviter le null dans la base de données */
+		annonce.setNombreDeVoyageurs(0);
 
+		/* Appel de la méthode send() du service pour écrire en base */
 		this.annonceService.send(annonce);
 
 		return ResponseEntity.status(HttpStatus.CREATED).build();

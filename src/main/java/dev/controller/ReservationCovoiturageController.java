@@ -45,8 +45,11 @@ public class ReservationCovoiturageController extends AbstractController {
 	 * 
 	 * @param reservationCovoiturageService
 	 */
-	public ReservationCovoiturageController(ReservationCovoiturageService reservationCovoiturageService) {
+	public ReservationCovoiturageController(ReservationCovoiturageService reservationCovoiturageService,
+			CollegueService collegueService, AnnonceService annonceService) {
 
+		this.annonceService = annonceService;
+		this.collegueService = collegueService;
 		this.reservationCovoiturageService = reservationCovoiturageService;
 	}
 
@@ -118,13 +121,23 @@ public class ReservationCovoiturageController extends AbstractController {
 
 		if (optCollegue.isPresent()) {
 			if (optAnnonce.isPresent()) {
-				resCovoiturage.setAnnonce(optAnnonce.get());
-				resCovoiturage.setCollegue(optCollegue.get());
+				if (optAnnonce.get().getNombreDePlacesDisponibles() > 0) {
 
-				/* Appel de la méthode send() du service pour écrire en base */
+					optAnnonce.get().setNombreDePlacesDisponibles(optAnnonce.get().getNombreDePlacesDisponibles() - 1);
+					optAnnonce.get().setNombreDeVoyageurs(optAnnonce.get().getNombreDeVoyageurs() + 1);
 
-				this.reservationCovoiturageService.send(resCovoiturage);
-				status = HttpStatus.CREATED;
+					resCovoiturage.setAnnonce(optAnnonce.get());
+					resCovoiturage.setCollegue(optCollegue.get());
+
+					/*
+					 * Appel de la méthode send() du service pour écrire en base
+					 */
+
+					this.reservationCovoiturageService.send(resCovoiturage);
+					status = HttpStatus.CREATED;
+				} else {
+					status = HttpStatus.BAD_REQUEST;
+				}
 			} else {
 				status = HttpStatus.BAD_REQUEST;
 			}
