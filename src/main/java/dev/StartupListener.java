@@ -87,7 +87,7 @@ public class StartupListener {
 		vehiculeDeSociete.setPhoto("http://car-from-uk.com/ebay/carphotos/full/ebay681106.jpg");
 		vehiculeDeSociete.setStatut(Statut.HORS_SERVICE);
 		this.vehiculeRepo.save(vehiculeDeSociete);
-		
+
 		VehiculeDeSociete vehiculeDeSociete2 = new VehiculeDeSociete();
 		vehiculeDeSociete2.setCategorie(Categorie.SUV);
 		vehiculeDeSociete2.setImmatriculation("BB-777-BB");
@@ -119,8 +119,9 @@ public class StartupListener {
 		annonce.setHoraireDeDepart(LocalDateTime.of(2118, 9, 30, 19, 00));
 		annonce.setLieuDeDepart("Nantes");
 		annonce.setLieuDeDestination("Brest");
-		annonce.setNombreDeVoyageurs(6);
+		annonce.setNombreDeVoyageurs(4);
 		annonce.setVehicule(vehiculeDeSociete);
+		annonce.setNombreDePlacesDisponibles(annonce.getNombreDeVoyageurs() - annonce.getVehicule().getNombreDePlace());
 		this.annonceRepo.save(annonce);
 
 		Annonce annonce2 = new Annonce();
@@ -128,8 +129,10 @@ public class StartupListener {
 		annonce2.setHoraireDeDepart(LocalDateTime.of(2014, 9, 30, 19, 00));
 		annonce2.setLieuDeDepart("Brest");
 		annonce2.setLieuDeDestination("Nantes");
-		annonce2.setNombreDeVoyageurs(6);
+		annonce2.setNombreDeVoyageurs(4);
 		annonce2.setVehicule(vehiculeDeSociete);
+		annonce2.setNombreDePlacesDisponibles(
+				annonce2.getNombreDeVoyageurs() - annonce2.getVehicule().getNombreDePlace());
 		this.annonceRepo.save(annonce2);
 
 		ReservationCovoiturage reservationCovoiturage = new ReservationCovoiturage();
