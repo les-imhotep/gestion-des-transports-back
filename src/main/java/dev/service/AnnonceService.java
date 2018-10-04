@@ -1,5 +1,6 @@
 package dev.service;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -8,6 +9,9 @@ import javax.transaction.Transactional;
 import org.springframework.stereotype.Service;
 
 import dev.domain.Annonce;
+import dev.exceptions.HoraireException;
+import dev.exceptions.NbDePlaceException;
+import dev.exceptions.ServiceException;
 import dev.repository.AnnonceRepo;
 
 /**
@@ -48,8 +52,20 @@ public class AnnonceService {
 	 * @param annonce
 	 */
 	public void send(Annonce annonce) {
-
-		this.annonceRepo.save(annonce);
+		
+		if (annonce.getNombreDePlacesDisponibles() >= annonce.getVehicule().getNombreDePlace()) {
+			
+			throw new NbDePlaceException();
+		}
+		else if (annonce.getHoraireDeDepart().isBefore(LocalDateTime.now())) {
+			
+			throw new HoraireException();
+			
+		}
+		else {
+			this.annonceRepo.save(annonce);
+		}
+	
 	}
 
 	/**
@@ -75,4 +91,9 @@ public class AnnonceService {
 	public Optional<Annonce> findAnnonce(Long id) {
 		return this.annonceRepo.findById(id);
 	}
+	
+	
+	
+	
+	
 }
