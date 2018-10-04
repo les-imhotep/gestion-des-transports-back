@@ -1,5 +1,9 @@
 package dev.exceptions;
 
+/**
+ * @author diginamic09
+ *
+ */
 public class HoraireException extends ServiceException {
 
 	/**

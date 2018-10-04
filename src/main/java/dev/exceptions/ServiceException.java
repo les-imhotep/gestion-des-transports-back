@@ -1,5 +1,11 @@
 package dev.exceptions;
 
+/**
+ * @author diginamic09
+ * 
+ * Classe "mère" de nos exceptions héritant de RuntimeException
+ *
+ */
 public class ServiceException extends RuntimeException {
 
 	/**

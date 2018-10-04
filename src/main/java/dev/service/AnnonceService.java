@@ -50,6 +50,8 @@ public class AnnonceService {
 	/**
 	 * Envoie de l'Annonce au repository pour création
 	 * 
+	 * Runtime exception générée dans deux cas
+	 * 
 	 * @param annonce
 	 */
 	public void send(Annonce annonce) {

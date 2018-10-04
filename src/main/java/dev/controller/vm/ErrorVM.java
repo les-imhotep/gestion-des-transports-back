@@ -1,5 +1,11 @@
 package dev.controller.vm;
 
+/**
+ * @author diginamic09
+ * 
+ * Code et message d'erreur envoyé au front lors de la levée d'une exception
+ *
+ */
 public class ErrorVM {
 
 	private ErrorCode code;
