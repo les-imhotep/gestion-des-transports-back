@@ -20,21 +20,7 @@ import dev.repository.AnnonceRepo;
  *         Couche de service faisant le lien entre la base de données et la
  *         couche de contrôle pour les Annonces
  */
-@Service
-@Transactional
-public class AnnonceService {
-
-	private AnnonceRepo annonceRepo;
-
-	/**
-	 * Injection des dépendances
-	 * 
-	 * @param annonceRepo
-	 */
-	public AnnonceService(AnnonceRepo annonceRepo) {
-
-		this.annonceRepo = annonceRepo;
-	}
+public interface AnnonceService {
 
 	/**
 	 * Lister toutes les annonces de l'utilisateur connecté
@@ -42,10 +28,7 @@ public class AnnonceService {
 	 * @param username
 	 * @return
 	 */
-	public List<Annonce> listerAnnonces(String username) {
-
-		return this.annonceRepo.findAllByCollegueEmail(username);
-	}
+	List<Annonce> listerAnnonces(String username);
 
 	/**
 	 * Envoie de l'Annonce au repository pour création
@@ -54,42 +37,21 @@ public class AnnonceService {
 	 * 
 	 * @param annonce
 	 */
-	public void send(Annonce annonce) {
-		
-		if (annonce.getNombreDePlacesDisponibles() >= annonce.getVehicule().getNombreDePlace()) {
-			
-			throw new NbDePlaceException();
-		}
-		else if (annonce.getHoraireDeDepart().isBefore(LocalDateTime.now())) {
-			
-			throw new HoraireException();
-			
-		}
-		else {
-			this.annonceRepo.save(annonce);
-		}
-	
-	}
+	void send(Annonce annonce);
 
 	/**
 	 * Envoie de l'id de l'annonce pour suppression
 	 * 
 	 * @param id
 	 */
-	public void supprimerAnnonce(Long id) {
-
-		this.annonceRepo.deleteById(id);
-	}
+	void supprimerAnnonce(Long id);
 
 	/**
 	 * Récupére toutes les annonces
 	 * 
 	 * @return
 	 */
-	public List<Annonce> listerAllCovoiturages() {
-
-		return this.annonceRepo.findAll();
-	}
+	List<Annonce> listerAllCovoiturages();
 
 	/**
 	 * Récupére l'annonce en fonction du paramètre
@@ -97,12 +59,7 @@ public class AnnonceService {
 	 * @param id
 	 * @return
 	 */
-	public Optional<Annonce> findAnnonce(Long id) {
-		return this.annonceRepo.findById(id);
-	}
-	
-	
-	
+	Optional<Annonce> findAnnonce(Long id);
 	
 	
 }

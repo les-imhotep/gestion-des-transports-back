@@ -129,7 +129,6 @@ public class AnnonceController extends AbstractController {
 
 			annonce.setVehicule(Converters.VEHICULE_VM_TO_VEHICULE.convert(annonceVM.getVehicule()));
 			this.vehiculeService.send(annonce.getVehicule());
-
 		}
 
 		/* Défini le nombre de voyageurs à 0 pour éviter le null dans la base de données */

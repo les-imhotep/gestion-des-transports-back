@@ -16,7 +16,10 @@ public class AbstractController {
 	 * @return
 	 */
 	public String getUserDetails() {
-		return (String) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		if (SecurityContextHolder.getContext().getAuthentication()!=null){
+			return (String) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		}
+		return null;
 	}
 
 }
