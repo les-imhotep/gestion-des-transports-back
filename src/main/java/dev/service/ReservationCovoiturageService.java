@@ -1,6 +1,7 @@
 package dev.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -61,4 +62,13 @@ public class ReservationCovoiturageService {
 		this.reservationCovoiturageRepo.save(resCovoiturage);
 	}
 
+	/**
+	 * Récupére la réservation de covoiturage en fonction du paramètre
+	 * 
+	 * @param id
+	 * @return
+	 */
+	public Optional<ReservationCovoiturage> findAnnonce(Long id) {
+		return this.reservationCovoiturageRepo.findById(id);
+	}
 }

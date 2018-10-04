@@ -94,6 +94,13 @@ public class ReservationCovoiturageController extends AbstractController {
 	@PostMapping("/reservationsCovoiturage/{id}")
 	public ResponseEntity<String> supprimerCovoiturage(@PathVariable("id") Long id) {
 
+		Optional<ReservationCovoiturage> optCovoiturage = this.reservationCovoiturageService.findAnnonce(id);
+
+		optCovoiturage.get().getAnnonce()
+				.setNombreDePlacesDisponibles(optCovoiturage.get().getAnnonce().getNombreDePlacesDisponibles() + 1);
+		optCovoiturage.get().getAnnonce()
+				.setNombreDeVoyageurs(optCovoiturage.get().getAnnonce().getNombreDeVoyageurs() - 1);
+
 		this.reservationCovoiturageService.supprimerCovoiturage(id);
 
 		return ResponseEntity.status(HttpStatus.CREATED).build();
