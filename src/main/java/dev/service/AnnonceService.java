@@ -17,7 +17,8 @@ import dev.repository.AnnonceRepo;
 /**
  * @author diginamic09
  *
- * Couche de service faisant le lien entre la base de données et la couche de contrôle pour les Annonces
+ *         Couche de service faisant le lien entre la base de données et la
+ *         couche de contrôle pour les Annonces
  */
 @Service
 @Transactional
@@ -88,6 +89,12 @@ public class AnnonceService {
 		return this.annonceRepo.findAll();
 	}
 
+	/**
+	 * Récupére l'annonce en fonction du paramètre
+	 * 
+	 * @param id
+	 * @return
+	 */
 	public Optional<Annonce> findAnnonce(Long id) {
 		return this.annonceRepo.findById(id);
 	}
