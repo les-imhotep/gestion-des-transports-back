@@ -26,7 +26,8 @@ import dev.service.VehiculeDeSocieteService;
 /**
  * @author diginamic09
  * 
- * Couche de cntrôle faisant le lien entre le front et la couche service pour les réservations de véhicule
+ *         Couche de cntrôle faisant le lien entre le front et la couche service
+ *         pour les réservations de véhicule
  *
  */
 @CrossOrigin
@@ -43,14 +44,16 @@ public class ReservationVehiculeController extends AbstractController {
 	 * 
 	 * @param reservationService
 	 */
-	public ReservationVehiculeController(ReservationVehiculeService reservationService, CollegueService collegueService, VehiculeDeSocieteService vehiculeDeSocieteService) {
+	public ReservationVehiculeController(ReservationVehiculeService reservationService, CollegueService collegueService,
+			VehiculeDeSocieteService vehiculeDeSocieteService) {
 		this.reservationVehiculeService = reservationService;
 		this.collegueService = collegueService;
 		this.vehiculeDeSocieteService = vehiculeDeSocieteService;
 	}
 
 	/**
-	 * GET: toutes les réservation de véhicule dont la date est postérieure à la date du jour
+	 * GET: toutes les réservation de véhicule dont la date est postérieure à la
+	 * date du jour
 	 * 
 	 * @return
 	 */
@@ -64,7 +67,8 @@ public class ReservationVehiculeController extends AbstractController {
 	}
 
 	/**
-	 * GET: toutes les réservation de véhicule dont la date est antérieur à la date du jour
+	 * GET: toutes les réservation de véhicule dont la date est antérieur à la
+	 * date du jour
 	 * 
 	 * @return
 	 */
@@ -88,7 +92,7 @@ public class ReservationVehiculeController extends AbstractController {
 		this.reservationVehiculeService.supprimerReservationVehicule(id);
 		return ResponseEntity.status(HttpStatus.CREATED).build();
 	}
-	
+
 	/**
 	 * POST : Ajout d'une réservation de véhicule de société en base de données
 	 * 
@@ -96,22 +100,22 @@ public class ReservationVehiculeController extends AbstractController {
 	 * @return
 	 */
 	@PostMapping("/reservationsVehicule/creer")
-	public ResponseEntity<String> creerReservationVehicule(@RequestBody ReservationVehiculeVM reservationVehiculeVM){
-		
+	public ResponseEntity<String> creerReservationVehicule(@RequestBody ReservationVehiculeVM reservationVehiculeVM) {
+
 		ReservationVehicule resVehicule = new ReservationVehicule();
-		
+
 		Optional<Collegue> optCollegue = this.collegueService.findCollegue(getUserDetails());
 		Optional<VehiculeDeSociete> optVehicule = this.vehiculeDeSocieteService
 				.findByImmatriculation(reservationVehiculeVM.getVehiculeSoc().getImmatriculation());
-		
+
 		resVehicule.setVehiculeSoc(optVehicule.get());
 		resVehicule.setCollegue(optCollegue.get());
 		resVehicule.setDepart(reservationVehiculeVM.getDepart());
 		resVehicule.setArrive(reservationVehiculeVM.getArrive());
-		resVehicule.setChauffeur(false);
-		
+		resVehicule.setChauffeur(reservationVehiculeVM.getChauffeur());
+
 		this.reservationVehiculeService.send(resVehicule);
-		
+
 		return ResponseEntity.status(HttpStatus.CREATED).build();
 	}
 }
