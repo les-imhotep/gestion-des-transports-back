@@ -14,32 +14,15 @@ import dev.repository.VehiculeRepo;
  * 
  * Couche de service faisant le lien entre la base de données et la couche de contrôle pour les véhicules
  */
-@Service
-@Transactional
-public class VehiculeService {
+public interface VehiculeService {
 
-	private VehiculeRepo vehiculeRepo;
-
-	/**
-	 * Injection des dépendances
-	 * 
-	 * @param vehiculeRepo
-	 */
-	public VehiculeService(VehiculeRepo vehiculeRepo) {
-
-		this.vehiculeRepo = vehiculeRepo;
-	}
 
 	/**
 	 * Envoie du véhicule au repository pour création
 	 * 
 	 * @param vehicule
 	 */
-	public void send(Vehicule vehicule) {
-
-		this.vehiculeRepo.save(vehicule);
-		
-	}
+	void send(Vehicule vehicule);
 	
 	/**
 	 * Recherche d'un véhicule grâce à son immatriculation
@@ -47,14 +30,6 @@ public class VehiculeService {
 	 * @param immatriculation
 	 * @return
 	 */
-	public Optional<Vehicule> findByImmatriculation(String immatriculation) {
-
-		return this.vehiculeRepo.findByImmatriculation(immatriculation);
-	}
-
-
-
-
-
+	Optional<Vehicule> findByImmatriculation(String immatriculation);
 
 }
