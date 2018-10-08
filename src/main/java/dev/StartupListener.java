@@ -80,23 +80,53 @@ public class StartupListener {
 
 		VehiculeDeSociete vehiculeDeSociete = new VehiculeDeSociete();
 		vehiculeDeSociete.setCategorie(Categorie.CITADINE);
-		vehiculeDeSociete.setImmatriculation("AA-666-AA");
+		vehiculeDeSociete.setImmatriculation("AA-111-AA");
 		vehiculeDeSociete.setMarque("Peugeot");
-		vehiculeDeSociete.setModele("106");
-		vehiculeDeSociete.setNombreDePlace(4);
-		vehiculeDeSociete.setPhoto("http://car-from-uk.com/ebay/carphotos/full/ebay681106.jpg");
-		vehiculeDeSociete.setStatut(Statut.HORS_SERVICE);
+		vehiculeDeSociete.setModele("208");
+		vehiculeDeSociete.setNombreDePlace(5);
+		vehiculeDeSociete.setPhoto("https://pictures.topspeed.com/IMG/crop/201608/peugeot-208-active-d-2_1600x0w.jpg");
+		vehiculeDeSociete.setStatut(Statut.EN_SERVICE);
 		this.vehiculeRepo.save(vehiculeDeSociete);
 
 		VehiculeDeSociete vehiculeDeSociete2 = new VehiculeDeSociete();
 		vehiculeDeSociete2.setCategorie(Categorie.SUV);
-		vehiculeDeSociete2.setImmatriculation("BB-777-BB");
+		vehiculeDeSociete2.setImmatriculation("BB-222-BB");
 		vehiculeDeSociete2.setMarque("Peugeot");
 		vehiculeDeSociete2.setModele("3008");
 		vehiculeDeSociete2.setNombreDePlace(5);
-		vehiculeDeSociete2.setPhoto("https://motor.elpais.com/wp-content/uploads/2017/06/26144725/peugeot-3008.jpg");
+		vehiculeDeSociete2.setPhoto("http://www.hdcarwallpapers.com/walls/2017_peugeot_3008_gt-HD.jpg");
 		vehiculeDeSociete2.setStatut(Statut.EN_SERVICE);
 		this.vehiculeRepo.save(vehiculeDeSociete2);
+		
+		VehiculeDeSociete vehiculeDeSociete3 = new VehiculeDeSociete();
+		vehiculeDeSociete3.setCategorie(Categorie.CITADINE);
+		vehiculeDeSociete3.setImmatriculation("CC-333-CC");
+		vehiculeDeSociete3.setMarque("Opel");
+		vehiculeDeSociete3.setModele("Corsa");
+		vehiculeDeSociete3.setNombreDePlace(5);
+		vehiculeDeSociete3.setPhoto("https://www.cpchardware.com/wp-content/uploads/2017/05/opel_corsa_01.jpg");
+		vehiculeDeSociete3.setStatut(Statut.HORS_SERVICE);
+		this.vehiculeRepo.save(vehiculeDeSociete3);
+		
+		VehiculeDeSociete vehiculeDeSociete4 = new VehiculeDeSociete();
+		vehiculeDeSociete4.setCategorie(Categorie.CITADINE);
+		vehiculeDeSociete4.setImmatriculation("DD-444-DD");
+		vehiculeDeSociete4.setMarque("Volkswagen");
+		vehiculeDeSociete4.setModele("Passat break");
+		vehiculeDeSociete4.setNombreDePlace(5);
+		vehiculeDeSociete4.setPhoto("https://squir.com/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/v/o/volkswagen_passat_variant_r-line_2018_0000.jpg");
+		vehiculeDeSociete4.setStatut(Statut.EN_SERVICE);
+		this.vehiculeRepo.save(vehiculeDeSociete4);
+		
+		VehiculeDeSociete vehiculeDeSociete5 = new VehiculeDeSociete();
+		vehiculeDeSociete5.setCategorie(Categorie.CITADINE);
+		vehiculeDeSociete5.setImmatriculation("EE-555-EE");
+		vehiculeDeSociete5.setMarque("Citroën");
+		vehiculeDeSociete5.setModele("Space Tourer");
+		vehiculeDeSociete5.setNombreDePlace(7);
+		vehiculeDeSociete5.setPhoto("https://masepmadit.com/wp-content/uploads/2018/08/citroen-7-places-luxe-of-citroen-7-places-1.jpg");
+		vehiculeDeSociete5.setStatut(Statut.EN_REPARATION);
+		this.vehiculeRepo.save(vehiculeDeSociete5);
 
 		ReservationVehicule resVehicule = new ReservationVehicule();
 		resVehicule.setCollegue(col2);
